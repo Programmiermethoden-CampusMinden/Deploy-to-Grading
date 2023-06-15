@@ -63,4 +63,4 @@ Im Folgenden wird der D2G-Ablauf für Lehrende beschrieben:
 |1.|*csv*-Datei einlesen|Einlesen der Daten aus dem ILIAS.|
 |2.|Auswerten der Ergebnisse (für jeden Eintrag in der *csv-Datei*)|Für jede(n) Studierenden werden die Ergebnisse der abgegebenen Aufgabe aus dem jeweiligen Repository geladen und überprüft. Alternativ ist es auch möglich, den Deploy-to-Grading-Prozess für jede Abgabe erneut auszuführen. Dies ist zum Beispiel notwendig, wenn das herunterzuladende Artefakt nicht mehr verfügbar ist oder Änderungen an der GitHub Action festgestellt wurden.|
 |3.|Plagiatsprüfung|Da an dieser Stelle alle Abgaben der Studierenden an einem Ort gesammelt sind, kann eine Plagiatsprüfung durchgeführt werden.|
-|4.|Export der Ergebnisse|Die gesammelten Ergebnisse werden so aufbereitet, dass sie ins ILIAS übertragen werden können. (siehe dazu Programmiermethoden/Deploy-to-Grading#17)|
+|4.|Export der Ergebnisse|Die gesammelten Ergebnisse werden so aufbereitet, dass sie ins ILIAS übertragen werden können.|

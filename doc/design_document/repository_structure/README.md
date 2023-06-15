@@ -42,5 +42,5 @@ Studierenden wird pro Praktikumseinheit eine ausgewählte Liste an Aufgaben gest
 
 ## Table of Contents
 
-1. [Dateistruktur von Aufgaben](doc/design_document/repository_structure/file_structure.md)
-2. [Definition von Konfigurationsdateien für Aufgabenblattdefinition und Aufgabendefinition](doc/design_document/repository_structure/file_structure.md)
+1. [Dateistruktur von Aufgaben](file_structure.md)
+2. [Definition von Konfigurationsdateien für Aufgabenblattdefinition und Aufgabendefinition](file_structure.md)

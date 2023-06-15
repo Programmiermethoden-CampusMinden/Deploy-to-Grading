@@ -6,9 +6,10 @@ In diesem Designdokument wird ein Konzept vorgestellt, durch das wir den bisheri
 
 ## Table of Contents
 
-1. [Ablauf des Deploy-to-Grading](doc/design_document/d2g_procedure.md)
-2. [Testmetriken](doc/design_document/metrics.md)
-3. [Repositorystrukturen](doc/design_document/repository_structure/README.md)
+1. [Ablauf des Deploy-to-Grading](d2g_procedure.md)
+2. [Testmetriken](metrics.md)
+3. [Repositorystrukturen](repository_structure/README.md)
+4. [Ergebnispräsentation](result_presentation.md)
 
 
 ### Weitere outdated Issues
