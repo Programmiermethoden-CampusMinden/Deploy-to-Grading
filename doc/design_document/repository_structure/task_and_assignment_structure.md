@@ -1,12 +1,12 @@
 ---
-title: Definition von Konfigurationsdateien für Aufgabenblattdefinition und Aufgabendefinitio
+title: Definition von Konfigurationsdateien für Aufgabenblatt- und Aufgabendefinition
 ---
 
 Aus dem alten Konzept existiert eine task.json, in der die zu bewertenden Aufgaben aufgelistet sind. Ich bin der Meinung, dass wir auch nicht um eine solche Konfigurationsdatei herumkommen. Daher im folgenden mein Vorschlag.
 
 Im folgenden unterscheide ich zwischen einer Definition für das Aufgabenblatt und für die einzelnen Aufgaben. Während die Aufgabenblattdefinition die Auswahl an Aufgaben und das Abgabedatum angibt, befindet sich in der Aufgabendefinition die eigentliche Konfiguration zum Testen und Bewerten.
 
-*Alternative: Könnten uns [hier](https://github.com/ProFormA/proformaxml/blob/master/Whitepaper.md) oder [hier](https://docs.codefreak.org/codefreak/for-teachers/assignments.html#task-codefreak-yml) dran orientieren oder das sogar einhalten. Im zweiten Fall tun wir das schon zum Teil.*
+*Alternative: Könnten uns an [ProFormA](https://github.com/ProFormA/proformaxml/blob/master/Whitepaper.md), [CodeFreak](https://docs.codefreak.org/codefreak/for-teachers/assignments.html#task-codefreak-yml) oder [PEML](https://cssplice.github.io/peml/) orientieren oder das sogar einhalten. Im zweiten Fall tun wir das schon zum Teil.*
 
 ### Format Aufgabenblattdefinition (assignment.yml)
 

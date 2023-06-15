@@ -17,7 +17,7 @@ Im folgenden wird der Ablauf der GH-Action beschrieben:
 
 |Schritt|Bezeichnung|Beschreibung|
 |--|--|--|
-|1.|Aufgabenblatt-yml laden|Einlesen der Aufgabenblatt-yml (Definiert in Programmiermethoden/Deploy-to-Grading#14). Relevant sind für die Bewertung das Abgabedatum (`due_date`) und die Liste der Aufgaben (`tasks`).|
+|1.|Aufgabenblatt-yml laden|Einlesen der Aufgabenblatt-yml (Definiert in [Definition von Konfigurationsdateien für Aufgabenblatt- und Aufgabendefinition](repository_structure/task_and_assignment_structure.md)). Relevant sind für die Bewertung das Abgabedatum (`due_date`) und die Liste der Aufgaben (`tasks`).|
 |2.|Vorbereiten des Repositories|Basierend auf dem Abgabedatum (`due_date`) wird das Repository passend ausgecheckt.|
 |3.|Aufgaben-yml laden (wiederholend bis 6. für jede Aufgabe in `tasks`)|Einlesen der Aufgaben-yml für die jeweilige Aufgabe. Relevant sind die Tests (`tests`) und die Liste an nicht zu überschreibenden Dateien (`no_override`).|
 |4.|Überschreiben der Vorlagendateien|Zur Vermeidung von veränderten Vorgabedateien werden alle in der Aufgabe vorhandenen Dateien mit den Dateien aus der Vorgabe überschrieben (Ausgenommen Lösungendateien, die nicht in der Vorlage vorhanden sind, und Dateien, die in `no_override` genannt sind.|

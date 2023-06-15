@@ -97,4 +97,4 @@ Erklärungen:
 
 Je nachdem, ob die finale Bewertung als GH-Action oder lokal ausgeführt wird, wird entweder ein Ordner `results` mit den Dateien erstellt oder dieser wird in einer `results.zip` verpackt und als Artefakt in der GH-Action hochgeladen.
 
-In einem Archiv `{firstname_lastname_mat_number}/` (z.B.  `max_mustermann_123456/`) werden die Ergebnisse einzelner Aufgabenblätter in `.zip`-Archiven gespeichert, sodass sie in der webbasierten Ergebnispräsentation für Studis (siehe Programmiermethoden/Deploy-to-Grading#16) angesehen werden können.
+In einem Archiv `{firstname_lastname_mat_number}/` (z.B.  `max_mustermann_123456/`) werden die Ergebnisse einzelner Aufgabenblätter in `.zip`-Archiven gespeichert, sodass sie in der webbasierten Ergebnispräsentation für Studis angesehen werden können.
