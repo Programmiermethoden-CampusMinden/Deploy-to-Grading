@@ -17,4 +17,6 @@ Eine Auflistung von automatischen Bewertungssystemen, die an anderen Hochschulen
 9. [ASB](https://www.hochschule-trier.de/informatik/forschung/projekte/asb)
 10. [Praktomat](https://github.com/KITPraktomatTeam/Praktomat)
 
+Weitere siehe [hier](https://www.waxmann.com/automatisiertebewertung/) und [hier](https://ep.elan-ev.de/wiki/Codeanalyse).
+
 *Hinweis: Da bei manchen automatischen Bewertungssystemen noch die Beschreibung fehlt, verlinken dessen Einträge direkt auf deren Seite.*
