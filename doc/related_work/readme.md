@@ -50,3 +50,4 @@ Durch die folgenden Punkte können wir uns von anderen AutoGradern abgrenzen:
 ## Table of Contents
 
 1. [Konferenzliste](https://github.com/Programmiermethoden/Dungeon/blob/master/doc/related_work/conferences.md)
+2. [Autograder](autograder/readme.md)

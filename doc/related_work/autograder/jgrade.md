@@ -3,6 +3,20 @@ title: JGrade
 url: https://github.com/espertus/jgrade
 ---
 
+## Bibtex
+
+```
+@misc{jgrade, 
+  author        = {Tim Kutcher},
+  title         = {JGrade},
+  year          = {2020},
+  howpublished  = {https://github.com/tkutcher/jgrade},
+  note          = {[Letzter Zugriff: 07.06.2023]}
+}
+```
+
+## Zusammenfassung
+
 JGrade ist ein Plugin für Gradescope Autograders, kann aber auch unabhängig davon genutzt werden. Seit drei Jahren wird das Original-Repo nicht mehr fortgeführt.
 
 Grundsätzlich ist JGrade zum Benoten von Java-Code gedacht und nutzt dafür primär JUnit-Tests, die alle eine unterschiedliche Anzahl an Punkten geben können. Zusätzlich wird noch Checkstyle genutzt und es bietet eine Schnittstelle für CLI-Tests. @cagix Gibt es/Stellt ihr Aufgaben, in denen Studierende CLI-Anwendungen programmieren müssen?
