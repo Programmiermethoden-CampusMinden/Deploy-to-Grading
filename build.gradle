@@ -1,0 +1,109 @@
+plugins {
+    id("java")
+    id("checkstyle")
+    id "com.github.spotbugs" version "5.0.14"
+    id "com.diffplug.spotless" version "6.18.0"
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/groups/public/" }
+}
+
+ext {
+    argparse4jVersion = "0.9.0"
+    checkstyleVersion = "10.11.0"
+    snakeyamlVersion = "2.0"
+}
+
+dependencies {
+    implementation "net.sourceforge.argparse4j:argparse4j:$argparse4jVersion"
+    implementation "org.yaml:snakeyaml:$snakeyamlVersion"
+
+    testImplementation "junit:junit:4.13.2"
+}
+
+sourceCompatibility = 17
+[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
+sourceSets.main.java.srcDirs = ["src/main/java"]
+sourceSets.main.resources.srcDirs = ["src/main/resources"]
+sourceSets.test.resources.srcDirs = ["src/test/resources"]
+sourceSets.test.java.srcDirs = ["src/test/java"]
+
+project.ext.mainClassName = "d2g.Main"
+
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+
+task run(dependsOn: classes, type: JavaExec) {
+    mainClass = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    ignoreExitValue = true
+    if (DefaultNativePlatform.currentOperatingSystem.isMacOsX()) {
+        allJvmArgs += ["-XstartOnFirstThread"]
+    }
+}
+
+task debug(dependsOn: classes, type: JavaExec) {
+    mainClass = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    ignoreExitValue = true
+    debug = true
+    if (DefaultNativePlatform.currentOperatingSystem.isMacOsX()) {
+        allJvmArgs += ["-XstartOnFirstThread"]
+    }
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+checkstyle {
+    toolVersion = checkstyleVersion
+    configFile = file("config/checkstyle/checks.xml")
+    showViolations = true
+}
+
+spotbugs {
+    ignoreFailures = true
+    showStackTraces = false
+    reportLevel = "low"
+}
+
+spotbugsMain {
+    reports {
+        xml {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.xml")
+        }
+        html {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            stylesheet = "fancy-hist.xsl"
+        }
+    }
+}
+
+spotbugsTest {
+    reports {
+        xml {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/test/spotbugs.xml")
+        }
+        html {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/test/spotbugs.html")
+            stylesheet = "fancy-hist.xsl"
+        }
+    }
+}
+
+spotless {
+    java {
+        targetExclude("build/generated-src/**")
+        googleJavaFormat().aosp()
+    }
+}
