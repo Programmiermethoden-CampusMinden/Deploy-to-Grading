@@ -13,6 +13,20 @@ url: https://github.com/codefreak/codefreak
   howpublished  = {https://github.com/codefreak/codefreak},
   note          = {[Letzter Zugriff: 16.06.2023]}
 }
+
+@article{woelk_felix_2021_5530450,
+  author       = {Woelk, Felix and
+                  Kasch, Henning},
+  title        = {{Code FREAK: Automatisches Feedback für die 
+                   Programmierausbildung}},
+  journal      = {Die neue Hochschule},
+  year         = 2021,
+  number       = {2021-5},
+  pages        = {28-31},
+  month        = oct,
+  doi          = {10.5281/zenodo.5530450},
+  url          = {https://doi.org/10.5281/zenodo.5530450}
+}
 ```
 
 *Anmerkung: Die angegebenen Autoren sind die drei Personen, die den Großteil der Commits im Repository haben.*
