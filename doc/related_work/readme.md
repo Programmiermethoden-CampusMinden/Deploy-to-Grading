@@ -52,4 +52,5 @@ Durch die folgenden Punkte können wir uns von anderen AutoGradern abgrenzen:
 1. [Konferenzliste](https://github.com/Programmiermethoden/Dungeon/blob/master/doc/related_work/conferences.md)
 2. [Automatische Bewertungssysteme](autograder/readme.md)
 3. [Nicht kategorisierte Paper](paper/readme.md)
-4. [Aufgabendefinitionsdateien](task_definition_files/readme.md)
+4. [Bücher](book/readme.md)
+5. [Aufgabendefinitionsdateien](task_definition_files/readme.md)
