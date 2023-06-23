@@ -14,7 +14,7 @@ url: https://github.com/codefreak/codefreak
   note          = {[Letzter Zugriff: 16.06.2023]}
 }
 
-@article{woelk_felix_2021_5530450,
+@article{woelk2021,
   author       = {Woelk, Felix and
                   Kasch, Henning},
   title        = {{Code FREAK: Automatisches Feedback für die 
