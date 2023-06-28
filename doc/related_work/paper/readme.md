@@ -10,3 +10,4 @@ Eine Auflistung an nicht kategorisierbaren Paper, die sich entweder mit automati
 2. [A Proposed Workflow For Version-Controlled Assignment Management](edmison2021.md)
 3. [Collaborative Learning Using Git with GitLab in Students of the Engineering Programming Course](valdivia2019.md)
 4. [Teaching Clean Code](dietz2018.md)
+5. [Code Process Metrics in University Programming Education](dietz2019.md)
