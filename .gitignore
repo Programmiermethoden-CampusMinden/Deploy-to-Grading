@@ -61,3 +61,7 @@ replay_pid*
 *.zip
 *.tgz
 *.tar.gz
+
+# Examples for testing #
+########################
+example_assignment/
