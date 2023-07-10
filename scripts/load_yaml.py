@@ -45,7 +45,9 @@ def _get_env_prefix(filename, argv):
         return argv[2].upper()
 
     size = len(filename)
-    start = size - filename[size:0:-1].index('/', 0, size)
+    start = 0
+    if '/' in filename:
+        start = size - filename[size:0:-1].index('/', 0, size)
     end = size - filename[size:0:-1].index('.', 0, size) - 1
     return filename[start:end].upper()
 
