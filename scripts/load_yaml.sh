@@ -1,11 +1,6 @@
 #!/bin/bash
 
-if [ $(dirname -- "$0") = "." ]
-then
-    output=$(./scripts/load_yaml.py "$@")
-else
-    output=$($(dirname -- "$0")/load_yaml.py "$@")
-fi
+output=$($D2G_PATH/scripts/load_yaml.py "$@")
 
 if [ ! $? -eq 0 ]
 then
