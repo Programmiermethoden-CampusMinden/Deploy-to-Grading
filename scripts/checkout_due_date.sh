@@ -1,8 +1,10 @@
 #!/bin/bash
 
 usage() {
-   cat <<EOM
-usage: $(basename $0) [datetime]
+    # Print usage information
+    cat <<EOM
+usage: ./$(basename $0) [datetime]
+  See git log documentation for valid datetime formats.
 EOM
     exit -1
 }
@@ -19,10 +21,18 @@ COMMIT_ID=$(git log --before=$1 -n 1 | grep commit | cut -d' ' -f2)
 if [ -z "$COMMIT_ID" ]
 then
     echo "Error: No commit found before $1"
-    exit -1
-else
-    # Checkout given commit id
-    git checkout $COMMIT_ID 2>: 1>:
+    usage
 fi
 
-echo "Successfully loaded commit with id $COMMIT_ID"
+# Checkout given commit id
+git checkout -q $COMMIT_ID
+
+# Check if checkout was successful
+if [ 0 -ne $? ]
+then
+    echo "Error: Failed to checkout commit $COMMIT_ID"
+    usage
+else
+    echo "Successfully loaded commit with id $COMMIT_ID"
+fi
+
