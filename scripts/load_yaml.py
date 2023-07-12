@@ -69,8 +69,7 @@ def _get_env_variables(yaml_data, prefix):
         elif isinstance(value, list):
             if isinstance(value[0], str) or isinstance(value, int) \
                     or isinstance(value, float):
-                # TODO: This is currently just a workaround that might
-                # not work.
+                # Export list of values as a string with values seperated by a space
                 env_vars["%s_%s" % (prefix, key.upper())] = "\ ".join(value)
             elif isinstance(value[0], dict):
                 keys = []
