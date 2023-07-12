@@ -28,7 +28,7 @@ fi
 git checkout -q $COMMIT_ID
 
 # Check if checkout was successful
-if [ 0 -ne $? ]
+if [ ! $? -eq 0 ]
 then
     echo "Error: Failed to checkout commit $COMMIT_ID"
     usage
