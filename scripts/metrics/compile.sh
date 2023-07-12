@@ -7,6 +7,6 @@ then
     mkdir -p "$DIR"
 fi
 
-gradle compileJava
+./gradlew compileJava
 echo "result: $?" > "$DIR/compile.yml"
 
