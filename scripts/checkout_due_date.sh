@@ -4,7 +4,9 @@ usage() {
     # Print usage information
     cat <<EOM
 usage: ./$(basename $0) [datetime]
-  See git log documentation for valid datetime formats.
+  Checks out the last commit before the given. This script needs to be
+  run in a folder containing a git repository.
+  datetime    See git log documentation for valid datetime formats.
 EOM
     exit -1
 }
