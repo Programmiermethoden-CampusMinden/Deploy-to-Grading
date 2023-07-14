@@ -12,6 +12,9 @@ def _print_usage():
     print("usage: junit_eval.py [taskname(optional)]")
     print("       Make sure that junit.sh was executed prior to this")
     print("       script and that the task yaml was loaded successfully.")
+    print("")
+    print("       Params:")
+    print("       taskname    Prefix of the tasks used for env variables.")
     exit(-1)
 
 def _get_points_per_test_env_variable(taskname):
