@@ -11,6 +11,9 @@ def _print_usage():
     print("usage: compile_eval.py [taskname(optional)]")
     print("       Make sure that compile.sh was executed prior to this")
     print("       script and that the task yaml was loaded correctly.")
+    print("")
+    print("       Params:")
+    print("       taskname    Prefix of the tasks used for env variables.")
     exit(-1)
 
 def _load_generated_results():
