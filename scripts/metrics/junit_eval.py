@@ -14,7 +14,7 @@ def _print_usage():
     print("       script and that the task yaml was loaded successfully.")
     print("")
     print("       Params:")
-    print("       taskname    Prefix of the tasks used for env variables.")
+    print("       taskname    Prefix of the task used for env variables.")
     exit(-1)
 
 def _get_points_per_test_env_variable(taskname):
