@@ -6,6 +6,8 @@ usage() {
 usage: ./$(basename $0) [datetime]
   Checks out the last commit before the given. This script needs to be
   run in a folder containing a git repository.
+
+  Params:
   datetime    See git log documentation for valid datetime formats.
 EOM
     exit -1
