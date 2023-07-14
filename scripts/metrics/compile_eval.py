@@ -13,7 +13,7 @@ def _print_usage():
     print("       script and that the task yaml was loaded correctly.")
     print("")
     print("       Params:")
-    print("       taskname    Prefix of the tasks used for env variables.")
+    print("       taskname    Prefix of the task used for env variables.")
     exit(-1)
 
 def _load_generated_results():
