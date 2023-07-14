@@ -8,6 +8,9 @@ import yaml
 def _print_usage():
     print("usage: evaluate_task.py [taskname(optional)]")
     print("       Requires that environment variable *TASKNAME*_METRICS is set.")
+    print("")
+    print("       Params:")
+    print("       taskname    Prefix of the task used for env variables.")
     exit(-1)
 
 def _get_metrics_list(taskname):
