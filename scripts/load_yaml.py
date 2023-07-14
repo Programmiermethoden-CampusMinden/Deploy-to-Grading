@@ -11,7 +11,7 @@ def _print_usage():
         print("")
         print("       Params:")
         print("       filename    Path to the yaml file")
-        print("       prefix      Optional prefix of the env variables (default: TASK)")
+        print("       prefix      Optional prefix of the env variables (default: name of the file)")
         exit(-1)
     else:
         raise RuntimeError("Failed to load yaml file.")
