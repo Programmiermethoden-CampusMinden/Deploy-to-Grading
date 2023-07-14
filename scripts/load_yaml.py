@@ -8,6 +8,10 @@ def _print_usage():
         print("usage: load_yaml.py [filename] [prefix(optional)]")
         print("       After execution, source the output to add the variables")
         print("       to the environment.")
+        print("")
+        print("       Params:")
+        print("       filename    Path to the yaml file")
+        print("       prefix      Optional prefix of the env variables (default: TASK)")
         exit(-1)
     else:
         raise RuntimeError("Failed to load yaml file.")
