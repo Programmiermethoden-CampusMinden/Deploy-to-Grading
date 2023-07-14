@@ -23,12 +23,29 @@ def _get_metrics_list(taskname):
 
     return metrics_string.split(" ")
 
+def _get_script_path(metric):
+    # Search for an evaluation script for the given metrics.
+    # Looks for scripts written in bash or python
+    base_path = os.path.join(os.environ["D2G_PATH"],
+        "scripts/metrics/%s_eval" % metric)
+    if os.path.exists(base_path + ".sh"):
+        return base_path + ".sh"
+    elif os.path.exists(base_path + ".py"):
+        return base_path + ".py"
+    else:
+        return None
+
 def _evaluate_metric(metric, taskname):
     # Execute the evaluation script of the given metric and return its
     # output as yaml.
 
-    proc = subprocess.run(["%s/scripts/metrics/%s_eval.py" % \
-        (os.environ["D2G_PATH"], metric), taskname], capture_output=True)
+    script = _get_script_path(metric)
+    print(script)
+    if script is None:
+        print("No script found to evaluate metric %s" % metric)
+        _print_usage()
+
+    proc = subprocess.run([script, taskname], capture_output=True)
     if proc.returncode != 0:
         print("Failed to evaluate metric %s" % metric)
         _print_usage()
