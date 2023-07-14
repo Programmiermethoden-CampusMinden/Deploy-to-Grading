@@ -5,6 +5,8 @@ usage() {
     cat <<EOM
 usage: ./$(basename $0) [yaml]
   Exports configuration in 'yaml' to environment variables.
+
+  Params:
   yaml    Path to file containing configuration data in yaml format
 EOM
     
