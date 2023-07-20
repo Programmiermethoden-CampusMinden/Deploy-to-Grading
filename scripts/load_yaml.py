@@ -59,13 +59,13 @@ def _get_env_variables(yaml_data, prefix):
                     env_vars.update(_get_env_variables(v, "%s_%s" % (prefix, key.upper())))
                 env_vars["%s_%s" % (prefix, key.upper())] = "\ ".join(keys)
             else:
-                print("echo \"Unknown type (%s)\"" % type(value))
+                print("echo \"Unknown type (%s)\"" % type(value), file=sys.stderr)
         elif isinstance(value, dict):
             env_vars.update(_get_env_variables(value, "%s_%s" % (prefix, key.upper())))
         else:
             # Printing this with echo so that it does not break the other
             # exports.
-            print("echo \"Unknown type (%s)\"" % type(value))
+            print("echo \"Unknown type (%s)\"" % type(value), file=sys.stderr)
     return env_vars
 
 
