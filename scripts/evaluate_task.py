@@ -1,5 +1,33 @@
 #!/bin/python3
 
+# Collects and summarizes the results of all defined metrics for a given
+# task. This script automatically executes all evaluation scripts for the
+# metrics defined in the environment variable %TASKNAME%_METRICS. The 
+# output is captured and merged into the format described in the
+# [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
+# and printed to the console. As metric evaluation scripts, both bash and
+# python scripts are accepted. To create a new metric evaluation script,
+# you must follow the rules mentioned in the [documentation](TODO).
+# Make sure to execute the script inside a task folder and that the task
+# configuration defined in a task.yml file was loaded correctly using the
+# load_yaml scripts. Furthermore, the D2G_PATH environment variable must be
+# set to the path containing the Deploy-to-Grading pipeline.
+#
+# usage: evaluate_task.py [taskname(optional)]
+#   Params:
+#   taskname    Name of the task used as prefix for the env variables and
+#               inside the path to the final results.yml file. If no
+#               taskname is given, "task" is used as the default value.
+#
+# Error handling:
+# - Exits with an error code when the %TASKNAME%_METRICS environment
+#   variable is not set or a metric specific script failed to execute
+#   correctly.
+#
+# This script is the main script of step 6 in the Deploy-to-Grading pipeline
+# that is executed for every task.
+#
+
 import os
 import subprocess
 import sys
@@ -7,7 +35,8 @@ import yaml
 
 def _print_usage():
     print("usage: evaluate_task.py [taskname(optional)]")
-    print("       Requires that environment variable *TASKNAME*_METRICS is set.")
+    print("       Requires that environment variables *TASKNAME*_METRICS")
+    print("       and D2G_PATH are set.")
     print("")
     print("       Params:")
     print("       taskname    Prefix of the task used for env variables.")
