@@ -28,8 +28,6 @@ def _create_arg_parser():
 def _parse_args():
     # Parse taskname, repository and no_override args. For more
     # information, see override_repo.py -h
-
-    # Create arg parser with options --taskname and --repository
     args = _create_arg_parser().parse_args()
 
     # Load all no_override files from the environment variable
