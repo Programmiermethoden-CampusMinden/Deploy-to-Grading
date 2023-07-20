@@ -15,6 +15,11 @@
 #               If no taskname is given, "task" is used as the default
 #               value.
 #
+# Error handling:
+# - Exits with an error code when the 
+#   %TASKNAME%_METRICS_JUNIT_POINTS_PER_TEST environment variable is not
+#   set.
+#
 # This script is step 6 in the Deploy-to-Grading pipeline that is
 # executed for every task that includes the junit metric.
 #
