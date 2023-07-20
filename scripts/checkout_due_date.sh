@@ -10,6 +10,11 @@
 #   datetime    A valid datetime format is YYYY-MM-DDThh:mm. See git
 #               log for more information on valid datetime formats.
 #
+# Error handling:
+# - Exits with an error code when the 
+#   %TASKNAME%_METRICS_JUNIT_POINTS_PER_TEST environment variable is not
+#   set.
+#
 # This script is step 2 in the Deploy-to-Grading pipeline that is
 # executed for the whole assignment.
 #
