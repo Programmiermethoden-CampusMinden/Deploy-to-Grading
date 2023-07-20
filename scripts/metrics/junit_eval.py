@@ -20,8 +20,8 @@
 #   %TASKNAME%_METRICS_JUNIT_POINTS_PER_TEST environment variable is not
 #   set.
 #
-# This script is step 6 in the Deploy-to-Grading pipeline that is
-# executed for every task that includes the junit metric.
+# This script is part of step 6 in the Deploy-to-Grading pipeline that
+# is executed for every task that includes the junit metric.
 #
 
 import os
