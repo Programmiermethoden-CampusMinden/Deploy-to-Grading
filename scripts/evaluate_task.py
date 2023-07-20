@@ -11,7 +11,6 @@ def _print_usage():
     print("")
     print("       Params:")
     print("       taskname    Prefix of the task used for env variables.")
-    exit(-1)
 
 def _get_metrics_list(taskname):
     # Load a list of all metrics used in this task. The list is loaded
@@ -20,6 +19,7 @@ def _get_metrics_list(taskname):
 
     if not metrics_string or metrics_string == "":
         _print_usage()
+        exit(-1)
 
     return metrics_string.split(" ")
 
@@ -44,17 +44,20 @@ def _evaluate_metric(metric, taskname):
     if script is None:
         print("No script found to evaluate metric %s" % metric)
         _print_usage()
+        exit(-1)
 
     proc = subprocess.run([script, taskname], capture_output=True)
     if proc.returncode != 0:
         print("Failed to evaluate metric %s" % metric)
         _print_usage()
+        exit(-1)
 
     try:
         output_yaml = yaml.safe_load(proc.stdout)
     except:
         print("Invalid yaml data from metric %s" % metric)
         _print_usage()
+        exit(-1)
 
     return { metric: output_yaml }
 
