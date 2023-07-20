@@ -1,5 +1,28 @@
 #!/bin/python3
 
+# Copies all files from a template repository to the current repository.
+# This script is used to prevent changes from students in files they are
+# not allowed to change. Files that are present in the current repository
+# as well as the template repository and that should not be overridden
+# need to be listed in the configuration file of the current task. Check
+# the [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/repository_structure/task_and_assignment_structure.md#format-aufgabendefinition-taskyml)
+# on how to define file that should not be overwritten.
+# Make sure that the script is executed inside a task folder and that the
+# task configuration was loaded correctly.
+#
+# usage: override_repo.py [-h] [-t TASKNAME] -r REPOSITORY
+#  Params:
+#  h, help:        Show a help message and exit
+#  t, taskname:    Name of the task used as env variable prefix
+#  r, repository:  URL used for cloning the template repository
+#
+# Error handling:
+# - Exits with an error code when it fails to clone the given repository.
+#
+# This script is step 4 in the Deploy-to-Grading pipeline and is executed
+# once for every task.
+#
+
 import argparse
 import os
 import subprocess
