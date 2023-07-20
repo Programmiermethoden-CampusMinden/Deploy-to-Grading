@@ -1,5 +1,24 @@
 #!/bin/python3
 
+# Evaluates the junit test results. It is required to execute junit.sh
+# prior to the execution of this script. This script parses the test
+# results saved in "build/results/junit/xml" and converts them into the
+# "results.yml" format defined in the 
+# [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
+# The output is printed to the console. Make sure to execute the script
+# inside a task folder and that the task configuration defined in a
+# task.yml file was loaded correctly using the load_yaml scripts.
+#
+# usage: junit_eval.py [taskname(optional)]
+#   Params:
+#   taskname    Name of the task used as prefix for the env variables.
+#               If no taskname is given, "task" is used as the default
+#               value.
+#
+# This script is step 6 in the Deploy-to-Grading pipeline that is
+# executed for every task that includes the junit metric.
+#
+
 import os
 import sys
 import xml.etree.ElementTree as ET
@@ -15,7 +34,6 @@ def _print_usage():
     print("")
     print("       Params:")
     print("       taskname    Prefix of the task used for env variables.")
-    exit(-1)
 
 def _get_points_per_test_env_variable(taskname):
     # Gets the points per test from the environment variables.
@@ -25,6 +43,7 @@ def _get_points_per_test_env_variable(taskname):
     if os.environ[key] is not None:
         return int(os.environ[key])
     _print_usage()
+    exit(-1)
 
 def _load_xml_files():
     # Load all xml files in RESULT_PATH.
