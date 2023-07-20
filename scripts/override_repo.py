@@ -54,21 +54,21 @@ def _clone_template_repository(url):
     repo_name = _get_repository_name(url)
 
     # Clone repo (Only if it has not been cloned before)
-    if not os.path.isdir(DIR_PREFIX+repo_name):
-        if not os.path.isdir(DIR_PREFIX):
-            os.mkdir(DIR_PREFIX)
-        current_dir = os.getcwd()
-        os.chdir(DIR_PREFIX)
-        return_code = subprocess.call(["git", "clone", "--depth", "1", url])
-        os.chdir(current_dir)
-        if return_code != 0:
-            print("Failed to clone template repository.")
-            _create_arg_parser().print_help()
-            exit(-1)
+    if not os.path.isdir(DIR_PREFIX):
+        os.mkdir(DIR_PREFIX)
+
+    current_dir = os.getcwd()
+    os.chdir(DIR_PREFIX)
+    return_code = subprocess.call(["git", "clone", "--depth", "1", url])
+    os.chdir(current_dir)
+    
+    if return_code != 0:
+        print("Failed to clone template repository.")
+        _create_arg_parser().print_help()
+        exit(-1)
     # TODO: It might be useful to only figure out the last shared commit
     # and update the files based on that commit. Currently two template
     # versions will be mixed if the student repository is not up-to-date.
-    # TODO: git pull might be necessary when the repository already exists
 
 def _is_ignored(filepath, no_override):
     # Check if a file or filepath is ignored and should not be overriden.
@@ -93,8 +93,8 @@ def _override_files(taskname, repository, no_override):
 
 def _cleanup(repository):
     # Deletes the previously cloned repository.
-    # TODO: Implement. When doing this, the cloning check can be removed
-    pass
+    repo_name = _get_repository_name(url)
+    shutil.rmtree(DIR_PREFIX+repo_name)
 
 def _main():
     args = _parse_args()
