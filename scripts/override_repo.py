@@ -6,7 +6,7 @@
 # as well as the template repository and that should not be overridden
 # need to be listed in the configuration file of the current task. Check
 # the [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/repository_structure/task_and_assignment_structure.md#format-aufgabendefinition-taskyml)
-# on how to define file that should not be overwritten.
+# on how to define files that should not be overwritten.
 # Make sure that the script is executed inside a task folder and that the
 # task configuration was loaded correctly.
 #
