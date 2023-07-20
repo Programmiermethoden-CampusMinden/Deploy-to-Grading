@@ -1,5 +1,29 @@
 #!/bin/python3
 
+# Evaluates the compile results. It is required to execute compile.sh
+# prior to the execution of this script. This script parses the results
+# saved in "build/results/junit/xml" and converts them into the "results.yml"
+# format defined in the 
+# [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
+# The output is printed to the console. Make sure to execute the script
+# inside a task folder and that the task configuration defined in a
+# task.yml file was loaded correctly using the load_yaml scripts.
+#
+# usage: compile_eval.py [taskname(optional)]
+#   Params:
+#   taskname    Name of the task used as prefix for the env variables.
+#               If no taskname is given, "task" is used as the default
+#               value.
+#
+# Error handling:
+# - Exits with an error code when the 
+#   %TASKNAME%_METRICS_COMPILE_POINTS environment variable is not
+#   set or the results file was not found or could not be parsed.
+#
+# This script is step 6 in the Deploy-to-Grading pipeline that is
+# executed for every task that includes the junit metric.
+#
+
 import os
 import sys
 import yaml
@@ -14,7 +38,6 @@ def _print_usage():
     print("")
     print("       Params:")
     print("       taskname    Prefix of the task used for env variables.")
-    exit(-1)
 
 def _load_generated_results():
     # Loads the file build/results/compile.yml that contains the results
@@ -26,9 +49,11 @@ def _load_generated_results():
             except:
                 print("Invalid yaml file")
                 _print_usage()
+                exit(-1)
     except FileNotFoundError as err:
         print("File %s not found" % RESULTS_DIR+RESULT_FILE)
         _print_usage()
+        exit(-1)
 
 def _generate_final_results(data, taskname):
     # Generates a results dictionary as defined in d2g_procedure.md in the
