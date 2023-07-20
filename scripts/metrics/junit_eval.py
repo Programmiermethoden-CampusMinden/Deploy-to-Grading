@@ -45,10 +45,12 @@ def _get_points_per_test_env_variable(taskname):
     # If the environment variable is not set, it returns a
     # default value of 1
     key = POINTS_PER_TEST_ENV_KEY % taskname.upper()
-    if os.environ[key] is not None:
-        return int(os.environ[key])
-    _print_usage()
-    exit(-1)
+
+    if os.environ[key] is None:
+        _print_usage()
+        exit(-1)
+
+    return int(os.environ[key])
 
 def _load_xml_files():
     # Load all xml files in RESULT_PATH.
