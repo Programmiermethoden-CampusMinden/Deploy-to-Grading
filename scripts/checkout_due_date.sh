@@ -32,7 +32,7 @@ EOM
 }
 
 # Check if $1 is a valid datetime string
-if ! date -d $1 2>: 1>:
+if ! date -d $1 1>/dev/null 2>&1
 then
     usage
     exit -1
