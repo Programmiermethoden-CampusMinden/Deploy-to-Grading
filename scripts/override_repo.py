@@ -6,21 +6,11 @@ import subprocess
 import shutil
 
 TEMPLATE_REPO_URL_KEY = "ASSIGNMENT_TEMPLATE_REPOSITORY"
-DEFAULT_TEMPLATE_REPO_URL = "https://github.com/akirsch1/d2g-dummy-template"
-
 DIR_PREFIX = "template/"
-
 DEFAULT_NO_OVERRIDE = [".git/"]
 
-def _print_usage():
-    print("Execute override_repo.py -h to print usage information.")
-    exit(-1)
-
-def _parse_args():
-    # Parse taskname, repository and no_override args. For more
-    # information, see override_repo.py -h
-
-    # Create arg parser with options --taskname and --repository
+def _create_arg_parser():
+    # Create a new argumen parser and returns it
     parser = argparse.ArgumentParser(
         prog="override_repo.py",
         description="Override all template files using the files from the \
@@ -31,11 +21,16 @@ def _parse_args():
         action="store", default="task",
         help="Name of the task used as env variable prefix.")
     parser.add_argument("-r", "--repository",
-        action="store",  default= os.getenv(TEMPLATE_REPO_URL_KEY)
-            if TEMPLATE_REPO_URL_KEY in os.environ
-            else DEFAULT_TEMPLATE_REPO_URL,
+        action="store", required=True,
         help="URL used for cloning the template repository.")
-    args = parser.parse_args()
+    return parser
+
+def _parse_args():
+    # Parse taskname, repository and no_override args. For more
+    # information, see override_repo.py -h
+
+    # Create arg parser with options --taskname and --repository
+    args = _create_arg_parser().parse_args()
 
     # Load all no_override files from the environment variable
     no_override_string = os.getenv("%s_NO_OVERRIDE" % args.taskname.upper())
@@ -68,7 +63,8 @@ def _clone_template_repository(url):
         os.chdir(current_dir)
         if return_code != 0:
             print("Failed to clone template repository.")
-            _print_usage()
+            _create_arg_parser().print_help()
+            exit(-1)
     # TODO: It might be useful to only figure out the last shared commit
     # and update the files based on that commit. Currently two template
     # versions will be mixed if the student repository is not up-to-date.
