@@ -17,13 +17,5 @@
 # executed for every task that includes the junit metric.
 #
 
-usage() {
-    # Print usage information
-    cat <<EOM
-usage: ./$(basename $0)
-  Wrapper for executing gradle test.
-EOM
-}
-
 # Execute junit tests using gradle
 ./gradlew test
