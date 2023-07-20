@@ -1,7 +1,9 @@
 #!/bin/python3
 
-# Loads configuration data from a yaml file. Is used to load both the
-# assignment configuration and the task configurations.
+# Loads configuration data from a yaml file. It is used to load both the
+# assignment configuration and the task configurations. This script can be
+# important by anther python script. For detailed information, see the usage
+# example or the documentation of the `load_yaml` function.
 #
 # usage:
 # ```python
@@ -13,6 +15,8 @@
 # except (FileNotFoundError, YAMLError) as err:
 #     pass # Handle exceptions here
 # ```
+#
+# This script is step 1 and step 3 in the Deploy-to-Grading pipeline.
 #
 
 import sys
