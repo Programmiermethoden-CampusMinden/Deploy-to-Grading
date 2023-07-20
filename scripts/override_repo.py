@@ -36,10 +36,10 @@ def _create_arg_parser():
     # Create a new argumen parser and returns it
     parser = argparse.ArgumentParser(
         prog="override_repo.py",
-        description="Override all template files using the files from the \
-            parent repository to revert changes made by students.\n \
-            Use TASK_NO_OVERRIDE environment variable to declare files that \
-            should not be overriden.")
+        description="""Override all template files using the files from the
+            parent repository to revert changes made by students.\n
+            Use TASK_NO_OVERRIDE environment variable to declare files that
+            should not be overriden.""")
     parser.add_argument("-t", "--taskname",
         action="store", default="task",
         help="Name of the task used as env variable prefix.")
