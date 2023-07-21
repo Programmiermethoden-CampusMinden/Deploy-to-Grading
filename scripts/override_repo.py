@@ -104,8 +104,8 @@ def _override_files(taskname, repository, no_override):
     repo_name = _get_repository_name(repository)
 
     # Loop through all files including files in subdirectories
-    template_repo_path = os.path.join(DIR_PREFIX, repo_name)
-    for path, _, files in os.walk(template_repo_path):
+    template_repo_path = os.path.join(DIR_PREFIX, repo_name, taskname)
+    for path, _, files in os.walk(os.path.join(template_repo_path)):
         for file in files:
             filepath = os.path.join(path, file)
             # Copy the file when it is not ignored two folders up
@@ -114,7 +114,7 @@ def _override_files(taskname, repository, no_override):
 
 def _cleanup(repository):
     # Deletes the previously cloned repository.
-    repo_name = _get_repository_name(url)
+    repo_name = _get_repository_name(repository)
     shutil.rmtree(DIR_PREFIX+repo_name)
 
 def _main():
