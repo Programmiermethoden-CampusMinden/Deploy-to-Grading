@@ -36,7 +36,7 @@ def _load_task_config(taskname):
     # Step 3 of the Deploy-to-Grading pipeline
     task_config_path = os.path.join(taskname, TASK_FILENAME)
     try:
-        return conf_loader.load_yaml(task_config_path)
+        return conf_loader.load_yaml(task_config_path, taskname.upper())
     except (FileNotFoundError, YAMLError) as err:
         _print_error_and_exit("Failed to load %s" % task_config_path)
 
@@ -82,9 +82,9 @@ def _evaluate_metrics(taskname, metrics, task_configuration):
 def _evaluate_task(taskname, repository):
     # Runs step 3 to 6 of the Deploy-to-Grading pipeline
     task_conf = _load_task_config(taskname)
-    override_repo(taskname, repository, task_conf["%s_NO_OVERRIDE" % taskname])
-    _execute_metrics(taskname, task_conf["%s_METRICS" % taskname])
-    _evaluate_metrics(taskname, task_conf["%s_METRICS" % taskname], task_conf)
+    _override_repo(taskname, repository, task_conf["%s_NO_OVERRIDE" % taskname.upper()])
+    _execute_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()])
+    _evaluate_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()], task_conf)
 
 def _main():
     assignment_conf = _load_assignment_config()
