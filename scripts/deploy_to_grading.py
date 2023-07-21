@@ -96,4 +96,4 @@ def _main():
     # TODO: Add step 7 (result presentation) of pipeline here
 
 if __name__ == "__main__":
-    main()
+    _main()
