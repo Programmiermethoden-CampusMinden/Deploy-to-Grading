@@ -1,6 +1,6 @@
 #!/bin/python3
 
-from .load_yaml import load_yaml
+import load_yaml as conf_loader
 import os
 import subprocess
 from yaml import YAMLError
@@ -20,7 +20,7 @@ def _print_error_and_exit(error_msg):
 def _load_assignment_config():
     # Step 1 of the Deploy-to-Grading pipeline
     try:
-        return load_yaml(ASSIGNMENT_FILE_NAME)
+        return conf_loader.load_yaml(ASSIGNMENT_FILE_NAME)
     except (FileNotFoundError, YAMLError) as err:
         _print_error_and_exit("Failed to load %s" % ASSIGNMENT_FILE_NAME)
 
@@ -36,7 +36,7 @@ def _load_task_config(taskname):
     # Step 3 of the Deploy-to-Grading pipeline
     task_config_path = os.path.join(taskname, TASK_FILENAME)
     try:
-        return load_yaml(task_config_path)
+        return conf_loader.load_yaml(task_config_path)
     except (FileNotFoundError, YAMLError) as err:
         _print_error_and_exit("Failed to load %s" % task_config_path)
 
