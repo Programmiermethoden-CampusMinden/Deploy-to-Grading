@@ -41,14 +41,19 @@ def _print_usage():
     print("       Params:")
     print("       taskname    Prefix of the task used for env variables.")
 
+def _print_error_and_exit(error_msg):
+    print(error_msg)
+    _print_usage()
+    exit(-1)
+
 def _get_metrics_list(taskname):
     # Load a list of all metrics used in this task. The list is loaded
     # from the environment variable *TASKNAME*_METRICS.
     metrics_string = os.environ["%s_METRICS" % taskname.upper()]
 
     if not metrics_string or metrics_string == "":
-        _print_usage()
-        exit(-1)
+        _print_error_and_exit("""No metrics found to evaluate.
+            Is env variable %s_METRICS set?""" % taskname.upper())
 
     return metrics_string.split(" ")
 
@@ -68,24 +73,16 @@ def _evaluate_metric(metric, taskname):
     # Execute the evaluation script of the given metric and return its
     # output as yaml.
     script = _get_script_path(metric)
-    print(script)
     if script is None:
-        print("No script found to evaluate metric %s" % metric)
-        _print_usage()
-        exit(-1)
-
+        _print_error_and_exit("No script found to evaluate metric %s" % metric)
     proc = subprocess.run([script, taskname], capture_output=True)
     if proc.returncode != 0:
-        print("Failed to evaluate metric %s" % metric)
-        _print_usage()
-        exit(-1)
+        _print_error_and_exit("Failed to evaluate metric %s" % metric)
 
     try:
         output_yaml = yaml.safe_load(proc.stdout)
     except:
-        print("Invalid yaml data from metric %s" % metric)
-        _print_usage()
-        exit(-1)
+        _print_error_and_exit("Invalid yaml data from metric %s" % metric)
 
     return { metric: output_yaml }
 
