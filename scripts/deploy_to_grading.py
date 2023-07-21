@@ -28,7 +28,7 @@ def _checkout_due_date(due_date):
     # Step 2 of the Deploy-to-Grading pipeline
     script_path = os.path.join(os.environ["D2G_PATH"],
         "scripts/checkout_due_date.sh")
-    proc = subprocess.run([script, due_date])
+    proc = subprocess.run([script_path, due_date])
     if proc.returncode != 0:
         _print_error_and_exit("Failed to evaluate checkout commit")
 
