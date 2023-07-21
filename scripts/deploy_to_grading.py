@@ -42,7 +42,12 @@ def _load_task_config(taskname):
 
 def _override_repo(taskname, repository, no_override):
     # Step 4 of the Deploy-to-Grading pipeline
-    pass # TODO: Implement
+    script_path = os.path.join(os.environ["D2G_PATH"],
+        "scripts/override_repo.py")
+    proc = subprocess.run(
+        [script_path, "-t", taskname, "-r", repository], cwd=taskname)
+    if proc.returncode != 0:
+        _print_error_and_exit("Failed to execute override_repo.py")
 
 def _get_metric_script_path(metric):
     # Search for an evaluation script for the given metrics. Looks for 
@@ -62,20 +67,24 @@ def _execute_metrics(taskname, metrics):
     for metric in metrics:
         metric_script = _get_metric_script_path(metric)
 
-        proc = subprocess.run(metric_script, cwd=taskname)
+        proc = subprocess.run([metric_script], cwd=taskname)
         if proc.returncode != 0:
             _print_error_and_exit("Failed to execute metric %s" % metric)
 
-def _evaluate_metrics(tasname, metrics):
+def _evaluate_metrics(taskname, metrics, task_configuration):
     # Step 6 fo the Deploy-to-Grading pipeline
-    pass # TODO: Implement
+    script_path = os.path.join(os.environ["D2G_PATH"],
+        "scripts/evaluate_task.py")
+    proc = subprocess.run([script_path], cwd=taskname, env=task_configuration)
+    if proc.returncode != 0:
+        _print_error_and_exit("Failed to execute override_repo.py")
 
 def _evaluate_task(taskname, repository):
     # Runs step 3 to 6 of the Deploy-to-Grading pipeline
     task_conf = _load_task_config(taskname)
     override_repo(taskname, repository, task_conf["%s_NO_OVERRIDE" % taskname])
     _execute_metrics(taskname, task_conf["%s_METRICS" % taskname])
-    _evaluate_metrics(taskname, , task_conf["%s_METRICS" % taskname])
+    _evaluate_metrics(taskname, task_conf["%s_METRICS" % taskname], task_conf)
 
 def _main():
     assignment_conf = _load_assignment_config()
