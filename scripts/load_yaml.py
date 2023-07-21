@@ -53,13 +53,13 @@ def _get_env_variables(yaml_data, prefix):
             if isinstance(value[0], str) or isinstance(value, int) \
                     or isinstance(value, float):
                 # Export list of values as a string with values seperated by a space
-                env_vars["%s_%s" % (prefix, key.upper())] = "\ ".join(value)
+                env_vars["%s_%s" % (prefix, key.upper())] = value
             elif isinstance(value[0], dict):
                 keys = []
                 for v in value:
                     keys.extend(v.keys())
                     env_vars.update(_get_env_variables(v, "%s_%s" % (prefix, key.upper())))
-                env_vars["%s_%s" % (prefix, key.upper())] = "\ ".join(keys)
+                env_vars["%s_%s" % (prefix, key.upper())] = keys
             else:
                 print("echo \"Unknown type (%s)\"" % type(value), file=sys.stderr)
         elif isinstance(value, dict):
