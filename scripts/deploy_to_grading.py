@@ -40,12 +40,13 @@ def _load_task_config(taskname):
     except (FileNotFoundError, YAMLError) as err:
         _print_error_and_exit("Failed to load %s" % task_config_path)
 
-def _override_repo(taskname, repository, no_override):
+def _override_repo(taskname, repository, task_configuration):
     # Step 4 of the Deploy-to-Grading pipeline
     script_path = os.path.join(os.environ["D2G_PATH"],
         "scripts/override_repo.py")
     proc = subprocess.run(
-        [script_path, "-t", taskname, "-r", repository], cwd=taskname)
+        [script_path, "-t", taskname, "-r", repository], cwd=taskname,
+        env=task_configuration)
     if proc.returncode != 0:
         _print_error_and_exit("Failed to execute override_repo.py")
 
@@ -64,10 +65,10 @@ def _get_metric_script_path(metric):
 
 def _execute_metrics(taskname, metrics):
     # Runs step 5 of the Deploy-to-Grading pipeline for every metric
-    for metric in metrics:
+    for metric in metrics.split(" "):
         metric_script = _get_metric_script_path(metric)
-
-        proc = subprocess.run([metric_script], cwd=taskname)
+        
+        proc = subprocess.run(metric_script, cwd=taskname)
         if proc.returncode != 0:
             _print_error_and_exit("Failed to execute metric %s" % metric)
 
@@ -82,7 +83,7 @@ def _evaluate_metrics(taskname, metrics, task_configuration):
 def _evaluate_task(taskname, repository):
     # Runs step 3 to 6 of the Deploy-to-Grading pipeline
     task_conf = _load_task_config(taskname)
-    _override_repo(taskname, repository, task_conf["%s_NO_OVERRIDE" % taskname.upper()])
+    _override_repo(taskname, repository, task_conf)
     _execute_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()])
     _evaluate_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()], task_conf)
 
@@ -90,7 +91,7 @@ def _main():
     assignment_conf = _load_assignment_config()
     _checkout_due_date(assignment_conf["ASSIGNMENT_DUE_DATE"])
 
-    for task in assignment_conf["ASSIGNMENT_TASKS"]:
+    for task in assignment_conf["ASSIGNMENT_TASKS"].split(" "):
         _evaluate_task(task, assignment_conf["ASSIGNMENT_TEMPLATE_REPOSITORY"])
 
     # TODO: Add step 7 (result presentation) of pipeline here
