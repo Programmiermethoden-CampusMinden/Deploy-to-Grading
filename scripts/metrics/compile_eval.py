@@ -81,7 +81,7 @@ def _print_results(results):
 
 def _main():
     taskname = "task"
-    if sys.argv == 2:
+    if len(sys.argv) == 2:
         taskname = sys.argv[1]
 
     data = _load_generated_results()
