@@ -76,9 +76,9 @@ def _evaluate_metrics(taskname, metrics, task_configuration):
     # Step 6 fo the Deploy-to-Grading pipeline
     script_path = os.path.join(os.environ["D2G_PATH"],
         "scripts/evaluate_task.py")
-    proc = subprocess.run([script_path], cwd=taskname, env=task_configuration)
+    proc = subprocess.run([script_path, taskname], cwd=taskname, env=dict(os.environ, **task_configuration))
     if proc.returncode != 0:
-        _print_error_and_exit("Failed to execute override_repo.py")
+        _print_error_and_exit("Failed to execute evaluate_task.py")
 
 def _evaluate_task(taskname, repository):
     # Runs step 3 to 6 of the Deploy-to-Grading pipeline
