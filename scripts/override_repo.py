@@ -105,7 +105,7 @@ def _override_files(taskname, repository, no_override):
 
     # Loop through all files including files in subdirectories
     template_repo_path = os.path.join(DIR_PREFIX, repo_name, taskname)
-    for path, _, files in os.walk(os.path.join(template_repo_path)):
+    for path, _, files in os.walk(template_repo_path):
         for file in files:
             filepath = os.path.join(path, file)
             # Copy the file when it is not ignored two folders up
