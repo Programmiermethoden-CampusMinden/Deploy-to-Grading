@@ -1,5 +1,19 @@
 #!/bin/python3
 
+# Main script of the Deploy-to-Grading pipeline for checking student
+# assignments. It runs all steps described in the
+# [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#ablauf-in-der-gh-action).
+# Make sure that the script is executed inside an assignment folder
+# and that the env variable D2G_PATH is set to a path to the
+# Deploy-to-Grading pipeline.
+# The results of the Deploy-to-Grading can be found in the `results`
+# folder. Additional data is saved in each tasks `build/results` folder.
+# TODO: All data will also be made available in an archive inside the
+# 'results' folder.
+#
+# usage: override_repo.py
+#
+
 import load_yaml as conf_loader
 import os
 import subprocess
@@ -10,7 +24,9 @@ TASK_FILENAME = "task.yml"
 
 def _print_usage():
     print("usage: deploy_to_grading.py")
-    print("       Executes the Deploy-to-Grading pipeline.")
+    print("       Executes the Deploy-to-Grading pipeline. Make sure to")
+    print("       execute the script inside an assignment folder and")
+    print("       that the D2G_PATH env variable is set.")
 
 def _print_error_and_exit(error_msg):
     print(error_msg)
@@ -94,7 +110,7 @@ def _main():
     for task in assignment_conf["ASSIGNMENT_TASKS"].split(" "):
         _evaluate_task(task, assignment_conf["ASSIGNMENT_TEMPLATE_REPOSITORY"])
 
-    # TODO: Add step 7 (result presentation) of pipeline here
+    # TODO: Add step 7 (result summary and presentation) of pipeline here
 
 if __name__ == "__main__":
     _main()
