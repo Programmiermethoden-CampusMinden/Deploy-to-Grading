@@ -57,6 +57,7 @@ then
     echo "Error: Failed to checkout commit $COMMIT_ID"
     usage
     exit -1
+fi
 
 echo "Successfully loaded commit with id $COMMIT_ID"
 

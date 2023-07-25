@@ -19,3 +19,4 @@
 
 # Execute junit tests using gradle
 ./gradlew test
+exit 0

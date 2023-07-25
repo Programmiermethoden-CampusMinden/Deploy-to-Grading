@@ -101,7 +101,7 @@ def _export_results(metric_results, taskname):
 
 def _main():
     taskname = "task"
-    if sys.argv == 2:
+    if len(sys.argv) == 2:
         taskname = sys.argv[1]
 
     metrics = _get_metrics_list(taskname)

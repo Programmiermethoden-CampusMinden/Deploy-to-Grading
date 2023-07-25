@@ -45,21 +45,20 @@ def _get_env_variables(yaml_data, prefix):
     env_vars = {}
     for key in yaml_data:
         value = yaml_data[key]
-        if isinstance(value, str):
-            env_vars["%s_%s" % (prefix, key.upper())] = value.replace(" ", "\ ")
-        elif isinstance(value, int) or isinstance(value, float):
-            env_vars["%s_%s" % (prefix, key.upper())] = value
+        if isinstance(value, str) or isinstance(value, int) or \
+                isinstance(value, float):
+            env_vars["%s_%s" % (prefix, key.upper())] = str(value)
         elif isinstance(value, list):
             if isinstance(value[0], str) or isinstance(value, int) \
                     or isinstance(value, float):
                 # Export list of values as a string with values seperated by a space
-                env_vars["%s_%s" % (prefix, key.upper())] = "\ ".join(value)
+                env_vars["%s_%s" % (prefix, key.upper())] = " ".join(value)
             elif isinstance(value[0], dict):
                 keys = []
                 for v in value:
                     keys.extend(v.keys())
                     env_vars.update(_get_env_variables(v, "%s_%s" % (prefix, key.upper())))
-                env_vars["%s_%s" % (prefix, key.upper())] = "\ ".join(keys)
+                env_vars["%s_%s" % (prefix, key.upper())] = " ".join(keys)
             else:
                 print("echo \"Unknown type (%s)\"" % type(value), file=sys.stderr)
         elif isinstance(value, dict):
