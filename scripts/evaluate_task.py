@@ -103,7 +103,7 @@ def _main():
     taskname = "task"
     if len(sys.argv) == 2:
         taskname = sys.argv[1]
-    
+
     metrics = _get_metrics_list(taskname)
     tests = []
     for metric in metrics:
