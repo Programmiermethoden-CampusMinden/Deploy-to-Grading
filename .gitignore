@@ -56,8 +56,6 @@ replay_pid*
 ##########
 **/__pycache__/
 
-
-
 # Packages #
 ############
 *.dmg
