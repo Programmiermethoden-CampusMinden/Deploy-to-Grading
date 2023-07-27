@@ -103,6 +103,20 @@ def _evaluate_task(taskname, repository):
     _execute_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()])
     _evaluate_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()], task_conf)
 
+def _create_artifact(assignment_configuration):
+    # Runs a script to collect individual metric results of every task and create
+    # an archive containing all results
+    script_path = os.path.join(os.environ["D2G_PATH"],
+        "scripts/create_artifact.sh")
+    proc = subprocess.run([script_path], env=dict(os.environ, **assignment_configuration))
+    if proc.returncode != 0:
+        _print_error_and_exit("Failed to execute create_artifact.sh")
+
+def _present_results(assignment_configuration):
+    _create_artifact(assignment_configuration)
+
+    # TODO: Add rest of step 7 (result summary and presentation) of pipeline here
+
 def _main():
     assignment_conf = _load_assignment_config()
     _checkout_due_date(assignment_conf["ASSIGNMENT_DUE_DATE"])
@@ -110,7 +124,7 @@ def _main():
     for task in assignment_conf["ASSIGNMENT_TASKS"].split(" "):
         _evaluate_task(task, assignment_conf["ASSIGNMENT_TEMPLATE_REPOSITORY"])
 
-    # TODO: Add step 7 (result summary and presentation) of pipeline here
+    _present_results(assignment_conf)
 
 if __name__ == "__main__":
     _main()
