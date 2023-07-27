@@ -2,7 +2,7 @@
 
 # Evaluates the codeformat results. It is required to execute codeformat.sh
 # prior to the execution of this script. This script parses the results
-# saved in "build/results/codeformat.xml" and converts them into the "results.yml"
+# saved in "build/results/codeformat.yml" and converts them into the "results.yml"
 # format defined in the 
 # [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # The output is printed to the console. Make sure to execute the script
