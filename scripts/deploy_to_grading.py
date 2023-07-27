@@ -113,6 +113,7 @@ def _create_artifact(assignment_configuration):
         _print_error_and_exit("Failed to execute create_artifact.sh")
 
 def _present_results(assignment_configuration):
+    # Step 7 of the Deploy-to-Grading pipeline
     _create_artifact(assignment_configuration)
 
     # TODO: Add rest of step 7 (result summary and presentation) of pipeline here
