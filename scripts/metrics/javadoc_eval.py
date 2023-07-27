@@ -9,6 +9,16 @@
 # inside a task folder and that the task configuration defined in a
 # task.yml file was loaded correctly using the load_yaml scripts.
 #
+# Points are calculated by deducting a number of points specified by the
+# %TASKNAME%_METRICS_JAVADOC_DEDUCTION_PER_ERROR env variable from a maximum
+# number of points specified by the %TASKNAME%_METRICS_JAVADOC_MAX_POINTS env
+# variable. The minimum number of points is zero.
+# This metric supports two different modes for calculating points. In the
+# first mode, every error results in a point deduction. In the second mode,
+# the errors are grouped by type and points are only deducted once per type.
+# The mode can be switched by setting %TASKNAME%_METRICS_JAVADOC_GROUP_ERRORS
+# env variable to true for the second mode.
+#
 # usage: javadoc_eval.py [taskname(optional)]
 #   Params:
 #   taskname    Name of the task used as prefix for the env variables.
@@ -17,9 +27,9 @@
 #
 # Error handling:
 # - Exits with an error code when either of the 
-#   %TASKNAME%_METRICS_JUNIT_POINTS_PER_TEST,
+#   %TASKNAME%_METRICS_JAVADOC_MAX_POINTS,
 #   %TASKNAME%_METRICS_JAVADOC_GROUP_ERRORS
-#   or %TASKNAME%_METRICS_JAVADOC_DEDUCTION_PER_ERROR" environment variables
+#   or %TASKNAME%_METRICS_JAVADOC_DEDUCTION_PER_ERROR environment variables
 #   are not set.
 #
 # This script is part of step 6 in the Deploy-to-Grading pipeline that
