@@ -1,7 +1,7 @@
 # Loads configuration data from a yaml file. It is used to load both the
 # assignment configuration and the task configurations. This script can be
 # imported by anther python script. For detailed information, see the usage
-# example or the documentation of the `load_yaml` function.
+# example or the documentation of the `load_yaml` function:
 #
 # usage:
 # ```python

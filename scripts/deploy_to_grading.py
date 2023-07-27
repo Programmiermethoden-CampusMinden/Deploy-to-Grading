@@ -11,7 +11,11 @@
 # TODO: All data will also be made available in an archive inside the
 # 'results' folder.
 #
-# usage: override_repo.py
+# usage: deploy_to_grading.py
+#
+# Error handling:
+# - Exits with an error code when any of the Deploy-to-Grading steps fails
+#   to execute correctly.
 #
 
 import load_yaml as conf_loader

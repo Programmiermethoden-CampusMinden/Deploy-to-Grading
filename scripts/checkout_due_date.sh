@@ -11,9 +11,8 @@
 #               log for more information on valid datetime formats.
 #
 # Error handling:
-# - Exits with an error code when the 
-#   %TASKNAME%_METRICS_JUNIT_POINTS_PER_TEST environment variable is not
-#   set.
+# - Exits with an error code when the given datetime is invalid, no
+#   valid commit id was found or the commit checkout failed.
 #
 # This script is step 2 in the Deploy-to-Grading pipeline that is
 # executed for the whole assignment.
@@ -43,7 +42,7 @@ COMMIT_ID=$(git log --before=$1 -n 1 | grep commit | cut -d' ' -f2)
 
 if [ -z "$COMMIT_ID" ]
 then
-    echo "Error: No commit found before $1"
+    echo "Error: No commit found before $1."
     usage
     exit -1
 fi
@@ -54,10 +53,10 @@ git checkout -q $COMMIT_ID
 # Check if checkout was successful
 if [ ! $? -eq 0 ]
 then
-    echo "Error: Failed to checkout commit $COMMIT_ID"
+    echo "Error: Failed to checkout commit $COMMIT_ID."
     usage
     exit -1
 fi
 
-echo "Successfully loaded commit with id $COMMIT_ID"
+echo "Successfully loaded commit with id $COMMIT_ID."
 
