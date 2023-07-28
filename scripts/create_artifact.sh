@@ -4,6 +4,8 @@
 # result folder. The assignment and task configuration are also copied.
 # Furthermore, this script creates a zip archive to distibute the results
 # (e.g. as an artifact in the GitHub Action).
+# Make sure that the $ASSIGNMENT_TASKS env variable contains a list of
+# tasks seperated by whitespace.
 #
 # usage: create_artifact.sh
 #
