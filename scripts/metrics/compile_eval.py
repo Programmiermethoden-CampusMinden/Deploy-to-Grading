@@ -2,7 +2,7 @@
 
 # Evaluates the compile results. It is required to execute compile.sh
 # prior to the execution of this script. This script parses the results
-# saved in "build/results/junit/xml" and converts them into the "results.yml"
+# saved in "build/results/compile.yml" and converts them into the "results.yml"
 # format defined in the 
 # [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # The output is printed to the console. Make sure to execute the script
@@ -21,7 +21,7 @@
 #   set or the results file was not found or could not be parsed.
 #
 # This script is part of step 6 in the Deploy-to-Grading pipeline that
-# is executed for every task that includes the junit metric.
+# is executed for every task that includes the compile metric.
 #
 
 import os
@@ -57,7 +57,7 @@ def _load_generated_results():
 
 def _generate_final_results(data, taskname):
     # Generates a results dictionary as defined in d2g_procedure.md in the
-    # documentation and returns it. Requires the *TASKNAME*_METRICS_COMPILE_POINTS
+    # documentation and returns it. Requires the %TASKNAME%_METRICS_COMPILE_POINTS
     # environment variable to be set.
     points = int(os.environ["%s_METRICS_COMPILE_POINTS" % taskname.upper()])
     results = {
@@ -69,7 +69,7 @@ def _generate_final_results(data, taskname):
         results["mistakes"] = [
             {
                 "deduction": points,
-                "description": "Compiltion failed."
+                "description": "Compilation failed."
             }
         ]
 
