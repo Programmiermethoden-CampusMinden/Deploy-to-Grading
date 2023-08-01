@@ -1,7 +1,19 @@
-# TODO
+# Collects all students that participated in a given task. It clones the
+# template repository and determines all files that are present in the students
+# repository but not in the template repository. For every file determined the
+# authors are determined using git blame. The ASSIGNMENT_TEMPLATE_REPOSITORY
+# env variable needs to be set to the template repository.
 #
-# Also detects 'Not commited yet' as a user. We ignore this as it should not
-# happend when using the Deploy-to-Grading pipeline inside a GitHub Action
+# usage:
+# ```python
+# import .get_students_involved as students
+# 
+# authors = students.get_students_involved(taskname)
+# ```
+#
+# Note: This script also detects 'Not commited yet' as a user. We ignore this
+# as it should not happend when using the Deploy-to-Grading pipeline inside
+# a GitHub Action.
 #
 
 import os
