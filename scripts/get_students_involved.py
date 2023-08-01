@@ -113,8 +113,17 @@ def _cleanup(repository):
     shutil.rmtree(os.path.join(DIR_PREFIX, repo_name))
 
 def get_students_involved(taskname):
-    # Determine all students involved in this task using git blame. Returns
-    # a list containing the students names.
+    """
+    Determine all students involved in this task using git blame. Requires
+    the ASSIGNMENT_TEMPLATE_REPOSITORY to be set to a valid template
+    repository.
+
+    Parameters:
+    taskname (string): Name of the task to determine the students for
+
+    Returns:
+    list: Student names as strings
+    """
     students = []
 
     template_repository = os.getenv("ASSIGNMENT_TEMPLATE_REPOSITORY")
