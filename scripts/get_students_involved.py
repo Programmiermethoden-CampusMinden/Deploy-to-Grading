@@ -33,7 +33,6 @@ def _clone_template_repository(url):
     # been cloned yet.
     repo_name = _get_repository_name(url)
 
-    # Clone repo (Only if it has not been cloned before)
     if not os.path.isdir(DIR_PREFIX):
         os.mkdir(DIR_PREFIX)
 
