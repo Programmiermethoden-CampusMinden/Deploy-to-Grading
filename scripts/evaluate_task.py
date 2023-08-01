@@ -28,6 +28,7 @@
 # that is executed for every task.
 #
 
+import get_students_involved as students
 import os
 import subprocess
 import sys
@@ -90,7 +91,7 @@ def _export_results(metric_results, taskname):
     # Build the final yaml structure and save it to the result.yml file.
     results_yaml = {
         "task": os.environ["%s_NAME" % taskname.upper()],
-        "students": "", # TODO: Implement extra script for this
+        "students": students.get_students_involved(taskname),
         "tests": metric_results
     }
 

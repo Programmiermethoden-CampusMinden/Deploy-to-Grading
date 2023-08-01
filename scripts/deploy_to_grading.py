@@ -92,20 +92,23 @@ def _execute_metrics(taskname, metrics):
         if proc.returncode != 0:
             _print_error_and_exit("Failed to execute metric %s" % metric)
 
-def _evaluate_metrics(taskname, metrics, task_configuration):
+def _evaluate_metrics(taskname, metrics, task_configuration, assignment_configuration):
     # Step 6 fo the Deploy-to-Grading pipeline
     script_path = os.path.join(os.environ["D2G_PATH"],
         "scripts/evaluate_task.py")
-    proc = subprocess.run([script_path, taskname], cwd=taskname, env=dict(os.environ, **task_configuration))
+    proc = subprocess.run([script_path, taskname], cwd=taskname,
+        env=dict(os.environ, **task_configuration, **assignment_configuration))
     if proc.returncode != 0:
         _print_error_and_exit("Failed to execute evaluate_task.py")
 
-def _evaluate_task(taskname, repository):
+def _evaluate_task(taskname, assignment_configuration):
     # Runs step 3 to 6 of the Deploy-to-Grading pipeline
     task_conf = _load_task_config(taskname)
-    _override_repo(taskname, repository, task_conf)
+    _override_repo(taskname,
+        assignment_configuration["ASSIGNMENT_TEMPLATE_REPOSITORY"], task_conf)
     _execute_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()])
-    _evaluate_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()], task_conf)
+    _evaluate_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()],
+        task_conf, assignment_configuration)
 
 def _create_artifact(assignment_configuration):
     # Runs a script to collect individual metric results of every task and create
@@ -127,7 +130,7 @@ def _main():
     _checkout_due_date(assignment_conf["ASSIGNMENT_DUE_DATE"])
 
     for task in assignment_conf["ASSIGNMENT_TASKS"].split(" "):
-        _evaluate_task(task, assignment_conf["ASSIGNMENT_TEMPLATE_REPOSITORY"])
+        _evaluate_task(task, assignment_conf)
 
     _present_results(assignment_conf)
 
