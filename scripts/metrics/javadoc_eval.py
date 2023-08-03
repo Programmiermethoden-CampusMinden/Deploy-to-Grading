@@ -36,39 +36,23 @@
 # is executed for every task that includes the javadoc metric.
 #
 
+import metric_utils
 import os
 import sys
-import xml.etree.ElementTree as ET
-import yaml
 
 RESULT_FILE = "build/results/javadoc/main.xml"
+
 MAX_POINTS_ENV_KEY = "%s_METRICS_JAVADOC_MAX_POINTS"
 GROUP_ERRORS_ENV_KEY = "%s_METRICS_JAVADOC_GROUP_ERRORS"
 DEDUCTION_PER_ERROR_ENV_KEY = "%s_METRICS_JAVADOC_DEDUCTION_PER_ERROR"
 
-def _print_usage():
-    print("usage: javadoc_eval.py [taskname(optional)]")
-    print("       Make sure that javadoc.sh was executed prior to this")
-    print("       script and that the task yaml was loaded successfully.")
-    print("")
-    print("       Params:")
-    print("       taskname    Prefix of the task used for env variables.")
+USAGE = """usage: javadoc_eval.py [taskname(optional)]
+       Make sure that javadoc.sh was executed prior to this
+       script and that the task yaml was loaded successfully.
 
-def _get_env_variable(taskname, key):
-    # Combines taskname with key and returns its corresponding
-    # environment variable. If the environment variable is not set,
-    # it exits the program with an error.
-    key = key % taskname.upper()
-
-    if os.environ[key] is None:
-        _print_usage()
-        exit(-1)
-
-    return os.environ[key]
-
-def _load_xml_file():
-    # Load xml result file.
-    return ET.parse(RESULT_FILE)
+       Params:
+       taskname    Prefix of the task used for env variables.
+"""
 
 def _get_relative_file_path(path):
     # Returns file path relative to the src directory.
@@ -135,35 +119,21 @@ def _convert_errors_to_mistakes(errors, max_points, deduction_per_error):
 
     return mistakes
 
-def _generate_final_results(mistakes, max_points, deduction_per_error):
-    # Generates a results dictionary as defined in d2g_procedure.md in the
-    # documentation and returns it.
-    results = {
-        "points": max(max_points - len(mistakes*deduction_per_error), 0),
-        "max_points": max_points,
-        "mistakes": mistakes
-    }
-
-    return results
-
-def _print_results(results):
-    # Prints results to the console as yaml.
-    print(yaml.dump(results), end="")
-
 def _main():
     taskname = "task"
     if len(sys.argv) == 2:
         taskname = sys.argv[1]
 
     # Load data from xml
-    data = _load_xml_file()
+    data = metric_utils.load_xml_file(RESULT_FILE, USAGE)
 
     # Load environment variables
-    max_points = int(_get_env_variable(taskname, MAX_POINTS_ENV_KEY))
-    group_errors = True \
-        if _get_env_variable(taskname, GROUP_ERRORS_ENV_KEY) == "true" else False
-    deduction_per_error = int(_get_env_variable(taskname, 
-        DEDUCTION_PER_ERROR_ENV_KEY))
+    max_points = int(metric_utils.get_env_variable(
+        MAX_POINTS_ENV_KEY, taskname, USAGE))
+    group_errors = True if metric_utils.get_env_variable(
+        GROUP_ERRORS_ENV_KEY, taskname, USAGE) == "true" else False
+    deduction_per_error = int(metric_utils.get_env_variable(
+        DEDUCTION_PER_ERROR_ENV_KEY, taskname, USAGE))
 
     # Parse errors and group them if neccessary
     errors = _get_errors(data)
@@ -173,9 +143,9 @@ def _main():
     # Create final yaml data
     mistakes = _convert_errors_to_mistakes(errors, max_points,
         deduction_per_error)
-    results = _generate_final_results(mistakes, max_points,
-        deduction_per_error)
-    _print_results(results)
+    results = metric_utils.generate_final_results_deduction_per_error(
+        mistakes, max_points, deduction_per_error)
+    metric_utils.print_results(results)
 
 if __name__ == "__main__":
     _main()
