@@ -8,8 +8,8 @@
 # Deploy-to-Grading pipeline.
 # The results of the Deploy-to-Grading can be found in the `results`
 # folder. Additional data is saved in each tasks `build/results` folder.
-# TODO: All data will also be made available in an archive inside the
-# 'results' folder.
+# All results are also made available in an archive inside the 'results'
+# folder in the root directory of the assignment and.
 #
 # usage: deploy_to_grading.py
 #
