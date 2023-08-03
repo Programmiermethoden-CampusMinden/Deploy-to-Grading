@@ -1,5 +1,15 @@
 #!/bin/python3
 
+# Prints a summary of the assignment results to the console for the students.
+# The results are printed when executing the Deploy-to-Grading pipeline locally
+# as well as in the console of the GitHub Action.
+# Before executing this script, please make sure that all results have been
+# exported to the results/ folder in the root directory of the assignment and
+# that the assignment configuration has been loaded into the environment variables.
+#
+# usage: print_results_student.py
+#
+
 from datetime import datetime
 import load_yaml as yaml_loader
 import os
@@ -103,6 +113,7 @@ def _print_task_results_table(results):
     print("+%s+%s+" % ('-'*max_taskname_length, '-'*points_length))
 
 def _print_deductions(results):
+    # Prints deductions of every metric of every task to the console.
     for task in results:
         for metric in results[task][1]["tests"]:
             if "mistakes" in metric[list(metric.keys())[0]]:
@@ -115,6 +126,8 @@ def _main():
     results = _load_yaml_results(os.environ["ASSIGNMENT_TASKS"].split(" "))
 
     print("")
+    # We print deductions before the final results because the we want the students
+    # to see the final results before the deductions.
     _print_deductions(results)
     print("")
     print("Aufgabenblatt: %s" % os.environ["ASSIGNMENT_NAME"])
