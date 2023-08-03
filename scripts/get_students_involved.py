@@ -139,6 +139,5 @@ def get_students_involved(taskname):
     students = _get_authors_of_task(files_to_check)
 
     _cleanup(template_repository)
-    print(list(students))
 
     return list(students)
