@@ -38,8 +38,6 @@ def get_env_variable(key, taskname=None, usage_text=None):
 
     return os.getenv(key)
 
-
-
 def load_xml_file(path, usage_text=None):
     """
     Loads the xml file given by path. If the file cannot be loaded, the function
