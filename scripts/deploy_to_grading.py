@@ -70,29 +70,7 @@ def _override_repo(taskname, repository, task_configuration):
     if proc.returncode != 0:
         _print_error_and_exit("Failed to execute override_repo.py")
 
-def _get_metric_script_path(metric):
-    # Search for an evaluation script for the given metrics. Looks for 
-    # scripts written in bash or python. If such a script does not exist,
-    # it assumes that the metric is a gradle task.
-    base_path = os.path.join(os.environ["D2G_PATH"],
-        "scripts/metrics/%s" % metric)
-    if os.path.exists(base_path + ".sh"):
-        return [base_path + ".sh"]
-    elif os.path.exists(base_path + ".py"):
-        return [base_path + ".py"]
-    else:
-        return ["./gradlew", metric]
-
-def _execute_metrics(taskname, metrics):
-    # Runs step 5 of the Deploy-to-Grading pipeline for every metric
-    for metric in metrics.split(" "):
-        metric_script = _get_metric_script_path(metric)
-        
-        #proc = subprocess.run(metric_script, cwd=taskname)
-        #if proc.returncode != 0:
-        #    _print_error_and_exit("Failed to execute metric %s" % metric)
-
-def _evaluate_metrics(taskname, metrics, task_configuration, assignment_configuration):
+def _execute_metrics(taskname, task_configuration, assignment_configuration):
     # Step 6 fo the Deploy-to-Grading pipeline
     script_path = os.path.join(os.environ["D2G_PATH"],
         "scripts/evaluate_task.py")
@@ -106,9 +84,7 @@ def _evaluate_task(taskname, assignment_configuration):
     task_conf = _load_task_config(taskname)
     _override_repo(taskname,
         assignment_configuration["ASSIGNMENT_TEMPLATE_REPOSITORY"], task_conf)
-    _execute_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()])
-    _evaluate_metrics(taskname, task_conf["%s_METRICS" % taskname.upper()],
-        task_conf, assignment_configuration)
+    _execute_metrics(taskname, task_conf, assignment_configuration)
 
 def _create_artifact(assignment_configuration):
     # Runs a script to collect individual metric results of every task and create
