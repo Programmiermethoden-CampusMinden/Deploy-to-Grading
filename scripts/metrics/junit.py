@@ -1,8 +1,7 @@
 #!/bin/python3
 
-# Evaluates the junit test results. It is required to execute junit.sh
-# prior to the execution of this script. This script parses the test
-# results saved in "build/results/junit/xml" and converts them into the
+# Executes the junit metric and evaluates its results. This script stores
+# the results in "build/results/junit" and converts them into the
 # "results.yml" format defined in the 
 # [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # The output is printed to the console. Make sure to execute the script

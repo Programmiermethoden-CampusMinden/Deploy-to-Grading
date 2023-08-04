@@ -1,8 +1,7 @@
 #!/bin/python3
 
-# Evaluates the javadoc test results. It is required to execute javadoc.sh
-# prior to the execution of this script. This script parses the test
-# results saved in "build/results/javadoc" and converts them into the
+# Executes the javadoc metric and evaluates its results. This script stores
+# the results in "build/results/javadoc" and converts them into the
 # "results.yml" format defined in the 
 # [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # The output is printed to the console. Make sure to execute the script

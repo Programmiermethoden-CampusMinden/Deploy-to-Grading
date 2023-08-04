@@ -1,9 +1,8 @@
 #!/bin/python3
 
-# Evaluates the codeformat results. It is required to execute codeformat.sh
-# prior to the execution of this script. This script parses the results
-# saved in "build/results/codeformat.yml" and converts them into the "results.yml"
-# format defined in the 
+# Executes the codeformat metric and evaluates its results. This script stores
+# the results in "build/results/codeformat.yml" and converts them into the
+# "results.yml" format defined in the 
 # [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # The output is printed to the console. Make sure to execute the script
 # inside a task folder and that the task configuration defined in a

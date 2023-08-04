@@ -1,9 +1,8 @@
 #!/bin/python3
 
-# Evaluates the compile results. It is required to execute compile.sh
-# prior to the execution of this script. This script parses the results
-# saved in "build/results/compile.yml" and converts them into the "results.yml"
-# format defined in the 
+# Executes the compile metric and evaluates its results. This script stores
+# the results in "build/results/compile.yml" and converts them into the
+# "results.yml" format defined in the 
 # [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # The output is printed to the console. Make sure to execute the script
 # inside a task folder and that the task configuration defined in a
