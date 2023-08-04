@@ -33,7 +33,8 @@ def get_env_variable(key, taskname=None, usage_text=None):
         key = key % taskname.upper()
 
     if os.getenv(key) is None:
-        print_usage(USAGE)
+        print("Environment variable %s not defined" % key)
+        print_usage(usage_text)
         exit(-1)
 
     return os.getenv(key)
