@@ -46,6 +46,11 @@ def _main():
     if len(sys.argv) == 2:
         taskname = sys.argv[1]
 
+    # Execute metric
+    returncode = metric_utils.execute_metric("./gradlew compileJava")
+    metric_utils.save_metric_result("compile", returncode)
+
+    # Evaluate and save results
     data = metric_utils.load_yaml(
         os.path.join(RESULTS_DIR, RESULT_FILE), USAGE)
     points = int(metric_utils.get_env_variable(

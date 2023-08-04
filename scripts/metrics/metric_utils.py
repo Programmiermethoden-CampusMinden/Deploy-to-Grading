@@ -5,6 +5,9 @@ import subprocess
 import xml.etree.ElementTree as ET
 import yaml
 
+RESULTS_DIR = "build/results/"
+YAML_FILE_ENDING = ".yml"
+
 def execute_metric(cmd):
     """
     Executes the script to run the metric and get the results.
@@ -20,6 +23,21 @@ def execute_metric(cmd):
         # the output of the executing script.
         capture_output=True)
     return proc.returncode
+
+def save_metric_result(metric, returncode):
+    """
+    Saves the given metric results into a file named %metric%.yml in the
+    results folder of the task.
+
+    Params:
+    metric     (string): Name of the metric used as a filename
+    returncode (number): Return value of the executed metric showing success
+                         or failure (zero for success)
+    """
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    path = os.path.join(RESULTS_DIR, metric+YAML_FILE_ENDING)
+    with open(path, "w") as file:
+        file.write("result: %d" % returncode)
 
 def print_usage(usage_text):
     """
