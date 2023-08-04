@@ -88,9 +88,9 @@ def _execute_metrics(taskname, metrics):
     for metric in metrics.split(" "):
         metric_script = _get_metric_script_path(metric)
         
-        proc = subprocess.run(metric_script, cwd=taskname)
-        if proc.returncode != 0:
-            _print_error_and_exit("Failed to execute metric %s" % metric)
+        #proc = subprocess.run(metric_script, cwd=taskname)
+        #if proc.returncode != 0:
+        #    _print_error_and_exit("Failed to execute metric %s" % metric)
 
 def _evaluate_metrics(taskname, metrics, task_configuration, assignment_configuration):
     # Step 6 fo the Deploy-to-Grading pipeline

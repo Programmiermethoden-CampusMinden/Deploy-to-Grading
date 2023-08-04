@@ -1,8 +1,25 @@
 # Python module containing utility functions for metric evaluation.
 
 import os
+import subprocess
 import xml.etree.ElementTree as ET
 import yaml
+
+def execute_metric(cmd):
+    """
+    Executes the script to run the metric and get the results.
+
+    Params:
+    cmd (string): String containing the command
+
+    Returns:
+    number: Return value of the process
+    """
+    proc = subprocess.run(cmd.split(" "), env=dict(os.environ),
+        # We capture the output here because we don't want it to leak into
+        # the output of the executing script.
+        capture_output=True)
+    return proc.returncode
 
 def print_usage(usage_text):
     """
