@@ -124,6 +124,7 @@ def _main():
     if len(sys.argv) == 2:
         taskname = sys.argv[1]
 
+    # Execute metric
     metric_utils.execute_metric("./gradlew checkstyleMain")
 
     # Load data from xml
