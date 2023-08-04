@@ -26,7 +26,6 @@
 
 import metric_utils
 import os
-import sys
 
 RESULTS_DIR = "build/results/"
 RESULT_FILE = "compile.yml"
@@ -42,9 +41,7 @@ USAGE = """usage: compile_eval.py [taskname(optional)]
 """
 
 def _main():
-    taskname = "task"
-    if len(sys.argv) == 2:
-        taskname = sys.argv[1]
+    taskname = metric_utils.get_taskname()
 
     data = metric_utils.load_yaml(
         os.path.join(RESULTS_DIR, RESULT_FILE), USAGE)

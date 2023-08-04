@@ -1,8 +1,22 @@
 # Python module containing utility functions for metric evaluation.
 
 import os
+import sys
 import xml.etree.ElementTree as ET
 import yaml
+
+def get_taskname():
+    """
+    Gets taskname from argv and returns it. If taskname was not set, it
+    returns "task" as a default.
+
+    Returns:
+    string: Name of the task used e.g. as part of paths
+    """
+    taskname = "task"
+    if len(sys.argv) == 2:
+        taskname = sys.argv[1]
+    return taskname
 
 def print_usage(usage_text):
     """

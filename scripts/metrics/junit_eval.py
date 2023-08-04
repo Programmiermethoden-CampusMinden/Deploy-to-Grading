@@ -26,7 +26,6 @@
 
 import metric_utils
 import os
-import sys
 
 RESULT_PATH = "build/results/junit/xml"
 
@@ -83,9 +82,7 @@ def _summarize_mistakes(data, points_per_test):
     return mistakes
 
 def _main():
-    taskname = "task"
-    if len(sys.argv) == 2:
-        taskname = sys.argv[1]
+    taskname = metric_utils.get_taskname()
 
     data = _load_xml_files()
     points_per_test = int(metric_utils.get_env_variable(
