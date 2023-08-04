@@ -17,7 +17,7 @@ authors:
     family-names: Kirsch
 repository-code: 'https://github.com/Programmiermethoden/Deploy-to-Grading'
 abstract: >-
-  Deploy to Grading is a toolchain for automated analysis
+  Deploy-to-Grading is a toolchain for automated analysis
   and grading of programming tasks.
 keywords:
   - auto grading
