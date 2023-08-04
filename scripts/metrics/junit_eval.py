@@ -87,12 +87,19 @@ def _main():
     if len(sys.argv) == 2:
         taskname = sys.argv[1]
 
+    # Execute metric
+    metric_utils.execute_metric("./gradlew test")
+
+    # Load results
     data = _load_xml_files()
+
+    # Evaluate results
     points_per_test = int(metric_utils.get_env_variable(
         POINTS_PER_TEST_ENV_KEY, taskname, USAGE))
     test_count = _count_tests(data)
     mistakes = _summarize_mistakes(data, points_per_test)
 
+    # Generate and print final report
     results = metric_utils.generate_final_results_points_per_test(
         mistakes, test_count, points_per_test)
     metric_utils.print_results(results)
