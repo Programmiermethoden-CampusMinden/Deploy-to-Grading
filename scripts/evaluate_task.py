@@ -62,7 +62,7 @@ def _get_script_path(metric):
     # Search for an evaluation script for the given metrics.
     # Looks for scripts written in bash or python
     base_path = os.path.join(os.environ["D2G_PATH"],
-        "scripts/metrics/%s_eval" % metric)
+        "scripts/metrics/%s" % metric)
     if os.path.exists(base_path + ".sh"):
         return base_path + ".sh"
     elif os.path.exists(base_path + ".py"):
