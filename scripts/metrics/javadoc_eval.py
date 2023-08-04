@@ -37,8 +37,6 @@
 #
 
 import metric_utils
-import os
-import sys
 
 RESULT_FILE = "build/results/javadoc/main.xml"
 
@@ -120,9 +118,7 @@ def _convert_errors_to_mistakes(errors, max_points, deduction_per_error):
     return mistakes
 
 def _main():
-    taskname = "task"
-    if len(sys.argv) == 2:
-        taskname = sys.argv[1]
+    taskname = metric_utils.get_taskname()
 
     # Load data from xml
     data = metric_utils.load_xml_file(RESULT_FILE, USAGE)
