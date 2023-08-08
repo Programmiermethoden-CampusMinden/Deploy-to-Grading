@@ -56,7 +56,7 @@ def _get_points_of_test(testname, default_points):
     # is replaced with an integer value.
     match = re.search(r"_\d+[pP]$", testname)
     if match:
-        return match.group(0)[1:-1]
+        return int(match.group(0)[1:-1])
     return default_points
 
 def _get_points(data, default_points):
