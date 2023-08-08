@@ -129,8 +129,10 @@ def generate_final_results_all_or_nothing(result, points, error_description):
                 "deduction": points,
                 "description": error_description
             }
-        ]
-
+       ]
+    
+    # Note: We do not use the default function here as we don't want that the
+    # "mistakes" variable is defined in the final dictionary.
     return results
 
 def generate_final_results_deduction_per_error(
@@ -149,35 +151,28 @@ def generate_final_results_deduction_per_error(
     Returns:
     dict: final results for dumping as yaml
     """
-    results = {
-        "points": max(max_points - len(mistakes*deduction_per_error), 0),
-        "max_points": max_points,
-        "mistakes": mistakes
-    }
+    return _generate_final_results(
+        mistakes,
+        max(max_points - len(mistakes*deduction_per_error), 0),
+        max_points
+    )
 
-    return results
-
-def generate_final_results_points_per_test(
-        mistakes, test_count, points_per_test):
+def _generate_final_results(mistakes, points, max_points):
     """
-    Generates a results dictionary as defined in d2g_procedure.md in the
-    documentation for the points per test strategy that grants a defined
-    number of points for each correct test.
-
+    Default function for generating the final results.
+    
     Params:
-    mistakes          (list): List of mistakes as defined in
-                              d2g_procedure.md in the documentation.
-    test_count       (tuple): Tuple (all_tests, failed_tests) containing
-                              the number of tests executed and the number of
-                              tests that failed.
-    points_per_test (number): Points awarded per correct test.
+    mistakes     (list): List of mistakes as defined in
+                         d2g_procedure.md in the documentation.
+    points     (number): Number of points for all correct answers.
+    max_points (number): Maximum number of points that can be achieved.
     
     Returns:
     dict: final results for dumping as yaml
     """
     results = {
-        "points": (test_count[0]-test_count[1]) * points_per_test,
-        "max_points": test_count[0] * points_per_test,
+        "points": points,
+        "max_points": max_points,
         "mistakes": mistakes
     }
 
