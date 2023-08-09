@@ -97,13 +97,13 @@ def _summarize_mistakes(data, default_points, point_multiplier):
             if testcase.tag == "testcase" and len(testcase) > 0:
                 description = "%s::%s: %s" % (root.attrib["name"], \
                     testcase.attrib["name"], testcase[0].attrib["message"])
-                mistakes.append({
-                    "deduction": round(
-                        _get_points_of_test(testcase.attrib["name"], 
-                                            default_points)
-                         * point_multiplier, ROUNDING_DECIMAL_PLACES),
-                    "description": description
-                })
+                mistakes.append(metric_utils.create_mistake(
+                    round(
+                        _get_points_of_test(testcase.attrib["name"],
+                            default_points) * point_multiplier,
+                        ROUNDING_DECIMAL_PLACES),
+                    description)
+                )
 
     return mistakes
 
