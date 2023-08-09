@@ -118,7 +118,7 @@ def _print_deductions(results):
         for metric in results[task][1]["tests"]:
             if "mistakes" in metric[list(metric.keys())[0]]:
                 for mistake in metric[list(metric.keys())[0]]["mistakes"]:
-                    print("[%s:%s (-%d Punkt(e))] %s"
+                    print("[%s:%s (-%.2f Punkt(e))] %s"
                         % (task, list(metric.keys())[0], mistake["deduction"],
                         mistake["description"]))
 
