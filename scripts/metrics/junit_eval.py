@@ -26,10 +26,11 @@
 
 import metric_utils
 import os
+import re
 
 RESULT_PATH = "build/results/junit/xml"
 
-POINTS_PER_TEST_ENV_KEY = "%s_METRICS_JUNIT_POINTS_PER_TEST"
+DEFAULT_POINTS_ENV_KEY = "%s_METRICS_JUNIT_DEFAULT_POINTS"
 
 USAGE = """usage: junit_eval.py [taskname(optional)]
        Make sure that junit.sh was executed prior to this
@@ -48,23 +49,33 @@ def _load_xml_files():
                 os.path.join(RESULT_PATH, file), USAGE))
     return data
 
-def _count_tests(data):
-    # Summarizes the overall number of tests and the number
-    # of failed tests. Returns a tuple (tests, failed_tests).
-    tests = 0
-    failed_tests = 0
+def _get_points_of_test(testname, default_points):
+    # Determines the possible points of a test case based on its name.
+    # It is possible to give tests a custom number of points by
+    # appending "_%POINTS%p" to the name of the test where %POINTS%
+    # is replaced with an integer value.
+    match = re.search(r"_\d+[pP]$", testname)
+    if match:
+        return int(match.group(0)[1:-1])
+    return default_points
+
+def _get_points(data, default_points):
+    points = 0
+    max_points = 0
 
     for testsuite in data:
         root = testsuite.getroot()
-        # Note: Skipped tests are not counted towards either
-        #       of those values.
-        tests = int(root.attrib["tests"])
-        failed_tests = int(root.attrib["failures"]) \
-                     + int(root.attrib["errors"])
+        for testcase in root:
+            if testcase.tag == "testcase":
+                possible_points = _get_points_of_test(testcase.attrib["name"],
+                                                      default_points)
+                if len(testcase) == 0:
+                    points += possible_points
+                max_points += possible_points
     
-    return (tests, failed_tests)
+    return (points, max_points)
 
-def _summarize_mistakes(data, points_per_test):
+def _summarize_mistakes(data, default_points):
     # Collect all failed test cases and create a summery containing
     # the deduction and a description of the error.
     mistakes = []
@@ -74,8 +85,10 @@ def _summarize_mistakes(data, points_per_test):
             if testcase.tag == "testcase" and len(testcase) > 0:
                 description = "%s::%s: %s" % (root.attrib["name"], \
                     testcase.attrib["name"], testcase[0].attrib["message"])
-                mistakes.append(metric_utils.create_mistake(points_per_test,
-                                                            description))
+                mistakes.append(metric_utils.create_mistake(
+                    _get_points_of_test(testcase.attrib["name"], default_points),
+                    description)
+                )
 
     return mistakes
 
@@ -83,13 +96,13 @@ def _main():
     taskname = metric_utils.get_taskname()
 
     data = _load_xml_files()
-    points_per_test = int(metric_utils.get_env_variable(
-        POINTS_PER_TEST_ENV_KEY, taskname, USAGE))
-    test_count = _count_tests(data)
-    mistakes = _summarize_mistakes(data, points_per_test)
+    default_points = int(metric_utils.get_env_variable(
+        DEFAULT_POINTS_ENV_KEY, taskname, USAGE))
+    points, max_points = _get_points(data, default_points)
+    mistakes = _summarize_mistakes(data, default_points)
 
-    results = metric_utils.generate_final_results_points_per_test(
-        mistakes, test_count, points_per_test)
+    results = metric_utils._generate_final_results(
+        mistakes, points, max_points)
     metric_utils.print_results(results)
 
 if __name__ == "__main__":
