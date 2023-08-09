@@ -32,11 +32,11 @@ metrics:
 Damit die JUnit-Metrik ausgeführt werden kann, muss der `test`-Task in der
 `build.gradle`-Datei korrekt konfiguriert sein. Der Pfad zum Speichern der
 Ergebnisse im XML-Format muss dabei `build/results/junit/xml` sein. Im
-folgenden ist eine Beispielkonfiguration angegeben.
+folgenden ist eine Beispielkonfiguration angegeben:
 
 ```gradle
 dependencies {
-    testImplementation `junit:junit:4.13.2`
+    testImplementation 'junit:junit:4.13.2'
 }
 
 test {
