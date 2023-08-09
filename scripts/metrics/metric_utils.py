@@ -102,6 +102,25 @@ def load_yaml(path, usage_text=None):
         print(usage_text)
         exit(-1)
 
+def create_mistake(deduction, description):
+    """
+    Creates a new mistake object containing the deduction points and a
+    description of the error.
+
+    Params:
+    deduction   (number): Number of points that are deducted from the overall
+                          because of the mistake.
+    description (string): Description of the mistake containing information
+                          about what is wrong and where the mistake is.
+
+    Returns:
+    dict: mistake object containing the summary of the mistake.
+    """
+    return {
+        "deduction": deduction,
+        "description": description
+    }
+
 def generate_final_results_all_or_nothing(result, points, error_description):
     """
     Generates a results dictionary as defined in d2g_procedure.md in the
@@ -124,12 +143,7 @@ def generate_final_results_all_or_nothing(result, points, error_description):
     }
 
     if not result:
-        results["mistakes"] = [
-            {
-                "deduction": points,
-                "description": error_description
-            }
-        ]
+        results["mistakes"] = [create_mistake(points, error_description)]
 
     return results
 

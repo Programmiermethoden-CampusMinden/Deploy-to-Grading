@@ -107,12 +107,10 @@ def _convert_errors_to_mistakes(errors, max_points, deduction_per_error):
         if isinstance(error, str):
             error = errors[error]
 
-        mistakes.append({
-            "deduction": deduction_per_error if error_count < max_points \
-                else 0,
-            "description": "%s: %s\n\t%s" % (error["type"], error["message"],
-                error["source"])
-        })
+        mistakes.append(metric_utils.create_mistake(
+            deduction_per_error if error_count < max_points else 0,
+            "%s: %s\n\t%s" % (error["type"], error["message"], error["source"])
+        ))
         error_count += deduction_per_error
 
     return mistakes

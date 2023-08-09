@@ -74,10 +74,8 @@ def _summarize_mistakes(data, points_per_test):
             if testcase.tag == "testcase" and len(testcase) > 0:
                 description = "%s::%s: %s" % (root.attrib["name"], \
                     testcase.attrib["name"], testcase[0].attrib["message"])
-                mistakes.append({
-                    "deduction": points_per_test,
-                    "description": description
-                })
+                mistakes.append(metric_utils.create_mistake(points_per_test,
+                                                            description))
 
     return mistakes
 
