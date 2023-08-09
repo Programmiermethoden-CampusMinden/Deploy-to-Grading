@@ -28,6 +28,23 @@ def print_usage(usage_text):
     if usage_text is not None:
         print(usage_text)
 
+def has_env_variable(key, taskname=None):
+    """
+    Combines taskname with key and checks if an environment variable with
+    the given name is defined.
+
+    Params:
+    key      (string): Key of the environment variable.
+    taskname (string): Optional taskname that is combined with the env key.
+
+    Returns:
+    bool: True when the environment variable exists.
+    """
+    if taskname is not None:
+        key = key % taskname.upper()
+
+    return key in os.environ
+
 def get_env_variable(key, taskname=None, usage_text=None):
     """
     Combines taskname with key and returns its corresponding environment

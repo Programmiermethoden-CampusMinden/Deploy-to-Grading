@@ -31,6 +31,7 @@ import re
 RESULT_PATH = "build/results/junit/xml"
 
 DEFAULT_POINTS_ENV_KEY = "%s_METRICS_JUNIT_DEFAULT_POINTS"
+OVERALL_POINTS_ENV_KEY = "%s_METRICS_JUNIT_OVERALL_POINTS"
 
 USAGE = """usage: junit_eval.py [taskname(optional)]
        Make sure that junit.sh was executed prior to this
@@ -39,6 +40,8 @@ USAGE = """usage: junit_eval.py [taskname(optional)]
        Params:
        taskname    Prefix of the task used for env variables.
 """
+
+ROUNDING_DECIMAL_PLACES = 2
 
 def _load_xml_files():
     # Load all xml files in RESULT_PATH.
@@ -60,6 +63,8 @@ def _get_points_of_test(testname, default_points):
     return default_points
 
 def _get_points(data, default_points):
+    # Summarize the number of points for the correct tests and the overall
+    # number of points.
     points = 0
     max_points = 0
 
@@ -75,7 +80,14 @@ def _get_points(data, default_points):
     
     return (points, max_points)
 
-def _summarize_mistakes(data, default_points):
+def _get_point_multiplier(overall_points, max_points):
+    # Calculate point multiplier for multiplying it with the actual point
+    # values.
+    if overall_points is not None:
+        return overall_points / max_points
+    return 1
+
+def _summarize_mistakes(data, default_points, point_multiplier):
     # Collect all failed test cases and create a summery containing
     # the deduction and a description of the error.
     mistakes = []
@@ -86,8 +98,10 @@ def _summarize_mistakes(data, default_points):
                 description = "%s::%s: %s" % (root.attrib["name"], \
                     testcase.attrib["name"], testcase[0].attrib["message"])
                 mistakes.append({
-                    "deduction": _get_points_of_test(testcase.attrib["name"],
-                                                     default_points),
+                    "deduction": round(
+                        _get_points_of_test(testcase.attrib["name"], 
+                                            default_points)
+                         * point_multiplier, ROUNDING_DECIMAL_PLACES),
                     "description": description
                 })
 
@@ -96,14 +110,26 @@ def _summarize_mistakes(data, default_points):
 def _main():
     taskname = metric_utils.get_taskname()
 
-    data = _load_xml_files()
+    # Get env variables
     default_points = int(metric_utils.get_env_variable(
         DEFAULT_POINTS_ENV_KEY, taskname, USAGE))
-    points, max_points = _get_points(data, default_points)
-    mistakes = _summarize_mistakes(data, default_points)
+    overall_points = None
+    if metric_utils.has_env_variable(OVERALL_POINTS_ENV_KEY, taskname):
+        overall_points = int(metric_utils.get_env_variable(
+            OVERALL_POINTS_ENV_KEY, taskname, USAGE))
 
+    # Load junit results
+    data = _load_xml_files()
+
+    # Evaluate results
+    points, max_points = _get_points(data, default_points)
+    point_multiplier = _get_point_multiplier(overall_points, max_points)
+    mistakes = _summarize_mistakes(data, default_points, point_multiplier)
+
+    # Create and print yaml
     results = metric_utils._generate_final_results(
-        mistakes, points, max_points)
+        mistakes, round(points*point_multiplier, ROUNDING_DECIMAL_PLACES),
+        int(max_points*point_multiplier))
     metric_utils.print_results(results)
 
 if __name__ == "__main__":
