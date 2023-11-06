@@ -82,6 +82,27 @@ def _get_author_of_line(blame_line):
     split_line_part = blame_line[name_start:closed_bracket_index].split()
     return " ".join(split_line_part[:len(split_line_part)-2])
 
+def _is_binary_file(file_path):
+    # Checks if file is binary
+    try:
+        with open(file_path, "r") as file:
+            data = file.read(512)
+            
+            # We treat empty files as text files
+            if len(data) == 0:
+                return False
+            
+            # Since binary files typically contain zero, this should be enough
+            # to detect binary files.
+            if '\x00' in data:
+                return True
+
+            return False
+    except:
+        # If reading fails, the file is binary. Since we don't try to read in
+        # binary mode.
+        return True
+
 def _get_authors_of_file(file):
     # Gets all authors of a file using git blame
     authors = set()
@@ -89,8 +110,15 @@ def _get_authors_of_file(file):
     # Setting date format to unix so that we don't have to parse as many whitespaces
     proc = subprocess.run(["git", "blame", "--date=unix", file], capture_output=True)
     if proc.returncode == 0:
-        for line in proc.stdout.splitlines():
-            authors.add(_get_author_of_line(str(line)))
+        # Because of issues with line breaks we need to handle binary files
+        # differently.
+        if _is_binary_file(file):
+            # Only add author of "first line" of the binary file
+            authors.add(_get_author_of_line(str(proc.stdout.splitlines()[0])))
+        else:
+            # Get authors for every line of a text file
+            for line in proc.stdout.splitlines():
+                authors.add(_get_author_of_line(str(line)))
     elif proc.returncode == 128:
         # Error 128 seems to indicate that the file is ignored by git
         pass
