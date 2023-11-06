@@ -86,6 +86,8 @@ def _is_binary_file(file_path):
     # Checks if file is binary
     try:
         with open(file_path, "r") as file:
+            # Only read first 512 bytes as these should be enough to detect
+            # a binary file.
             data = file.read(512)
             
             # We treat empty files as text files
