@@ -1,5 +1,6 @@
 # Python module containing utility functions for yaml result file parsing.
 
+import math
 import os
 import yaml
 
@@ -60,7 +61,8 @@ def get_points_of_task(task):
     points = 0
     max_points = 0
     for metric in task[1]["tests"]:
-        points += metric[list(metric.keys())[0]]["points"]
+        # We round up here because we don't want to deduct non-full points.
+        points += math.ceil(metric[list(metric.keys())[0]]["points"])
         max_points += metric[list(metric.keys())[0]]["max_points"]
 
     return (points, max_points)
