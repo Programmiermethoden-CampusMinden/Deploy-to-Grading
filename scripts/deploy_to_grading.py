@@ -129,6 +129,12 @@ def _present_results(assignment_configuration):
     if proc.returncode != 0:
         _print_error_and_exit("Failed to print student results")
 
+def _revert_checkout():
+    # Revert step 2 of the Deploy-to-Grading pipeline
+    script_path = os.path.join(os.environ["D2G_PATH"],
+        "scripts/revert_checkout.sh")
+    subprocess.run([script_path])
+
 def _main():
     assignment_conf = _load_assignment_config()
     _checkout_due_date(assignment_conf["ASSIGNMENT_DUE_DATE"])
@@ -137,6 +143,8 @@ def _main():
         _evaluate_task(task, assignment_conf)
 
     _present_results(assignment_conf)
+    
+    _revert_checkout()
 
 if __name__ == "__main__":
     _main()

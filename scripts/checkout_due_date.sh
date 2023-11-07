@@ -37,6 +37,18 @@ then
     exit -1
 fi
 
+# Check if current date is prior to the submission date because
+# then we don't need to set the branch back as we can't have any
+# commits after the submission date.
+CURRENT_DATETIME_IN_S=$(date -d "$(date +'%Y-%m-%dT%H:%M:%S')" +%s)
+SUBMISSION_DATE_IN_S=$(date -d $1 +%s)
+if [ $CURRENT_DATETIME_IN_S -lt $SUBMISSION_DATE_IN_S ]
+then
+    echo -n "Using current state of work since the submission date is "
+    echo "still in the future."
+    exit 0
+fi
+
 # Find first commit before the given datetime
 COMMIT_ID=$(git log --before=$1 -n 1 | grep commit | cut -d' ' -f2)
 
@@ -46,6 +58,9 @@ then
     usage
     exit -1
 fi
+
+# Save current branch name to file for revert_checkout.sh.
+git rev-parse --abbrev-ref HEAD > ./.d2g_previvous_checkout.txt
 
 # Checkout given commit id
 git checkout -q $COMMIT_ID
