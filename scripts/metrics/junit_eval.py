@@ -127,7 +127,7 @@ def _main():
     mistakes = _summarize_mistakes(data, default_points, point_multiplier)
 
     # Create and print yaml
-    results = metric_utils._generate_final_results(
+    results = metric_utils.generate_final_results(
         mistakes, round(points*point_multiplier, ROUNDING_DECIMAL_PLACES),
         int(max_points*point_multiplier))
     metric_utils.print_results(results)
