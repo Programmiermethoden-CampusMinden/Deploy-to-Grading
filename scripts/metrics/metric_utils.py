@@ -182,13 +182,13 @@ def generate_final_results_deduction_per_error(
     Returns:
     dict: final results for dumping as yaml
     """
-    return _generate_final_results(
+    return generate_final_results(
         mistakes,
         max(max_points - len(mistakes*deduction_per_error), 0),
         max_points
     )
 
-def _generate_final_results(mistakes, points, max_points):
+def generate_final_results(mistakes, points, max_points):
     """
     Default function for generating the final results.
     
