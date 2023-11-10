@@ -17,7 +17,7 @@ url: https://ieeexplore.ieee.org/document/10216467
 
 ## Zusammenfassung
 
-CoFee (COntiuous FEEdback) ist ein Feedback-System, welches an der Universität Potsdam entwickelt und für die Feedback-Generierung für Abgaben in der Programmiersprache C eingesetzt wird. Es basiert auf der Idee, eine selbst-gehostete GitLab-Instanz als Ausführungseinheit zu verwenden. Sehr ähnlich zu unseren Ideen arbeiten Studierende in einem Repository und können Abgaben über Git pushen, wodurch eine Pipeline angestoßen wird, die Feedback generiert. 
+[CoFee (COntiuous FEEdback)](https://www.cs.uni-potsdam.de/bs/research/projectSecurity.html#cofee) ist ein Feedback-System, welches an der Universität Potsdam entwickelt und für die Feedback-Generierung für Abgaben in der Programmiersprache C eingesetzt wird. Es basiert auf der Idee, eine selbst-gehostete GitLab-Instanz als Ausführungseinheit zu verwenden. Sehr ähnlich zu unseren Ideen arbeiten Studierende in einem Repository und können Abgaben über Git pushen, wodurch eine Pipeline angestoßen wird, die Feedback generiert. 
 
 Anschließend können die Studierenden sich die Ergebnisse über eine Web-UI anschauen. Die Web-UI wird über GitLab-Pages gehostet. Einen Link dazu finden Studierende in der Beschreibung eines Repositorys. Die Web-UI enthält eine Auflistung aller Fehler, die mit zusätzlichen Hinweisen angereichert ist. Die Hinweise können von Lehrenden in einer extra Datei definiert werden und werden automatisch den passenden Fehlertypen hinzugefügt. Des Weiteren enthält die Web-UI Verlinkungen zu den "Rohdaten" der Analyse-Tools, z.B. XML-Outputs, aber auch die Standard-HTML-Outputs.
 
