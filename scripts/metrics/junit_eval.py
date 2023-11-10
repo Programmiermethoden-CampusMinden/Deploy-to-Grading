@@ -111,8 +111,10 @@ def _main():
     taskname = metric_utils.get_taskname()
 
     # Get env variables
-    default_points = int(metric_utils.get_env_variable(
-        DEFAULT_POINTS_ENV_KEY, taskname, USAGE))
+    default_points = 1
+    if metric_utils.has_env_variable(DEFAULT_POINTS_ENV_KEY, taskname):
+        default_points = int(metric_utils.get_env_variable(
+            DEFAULT_POINTS_ENV_KEY, taskname, USAGE))
     overall_points = None
     if metric_utils.has_env_variable(OVERALL_POINTS_ENV_KEY, taskname):
         overall_points = int(metric_utils.get_env_variable(
