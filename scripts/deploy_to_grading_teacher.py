@@ -18,6 +18,8 @@ USAGE = """usage: deploy_to_grading_teacher.py [submission_file]
                        as defined by ILIAS
 """
 
+PLAGIARISM_METRIC = "jplag"
+
 ### Set environment variable GITHUB_TOKEN to avoid reaching api limits.
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 github = Github(GITHUB_TOKEN)
@@ -231,6 +233,17 @@ def _save_to_excel_file(submission_results):
     # Save dataframe to excel file.
     df.to_excel(EXPORT_FILE)
 
+def _check_for_plagiarism():
+    # Executes the plagiarism metric scripts.
+
+    # Execute plagiarism metric
+    ret = subprocess.run([f"./scripts/metrics/{PLAGIARISM_METRIC}.sh"])
+    
+    # Only execute eval script if the metric execution was successful.
+    if ret.returncode == 0:
+        subprocess.run([f"./scripts/metrics/{PLAGIARISM_METRIC}_eval.py"])
+
+
 def _main():
     # Read submission list from ILIAS file
     submissions = _read_submission_list()
@@ -243,7 +256,9 @@ def _main():
 
     _save_to_excel_file(submission_results)
 
-    print(f"Finished. Saved results to {EXPORT_FILE}")
+    _check_for_plagiarism()
+
+    print(f"Finished. Saved results to {EXPORT_FILE}.")
 
 if __name__ == "__main__":
 
