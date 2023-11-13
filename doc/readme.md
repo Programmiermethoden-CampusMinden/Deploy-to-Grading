@@ -28,6 +28,7 @@ jobs:
 ## Table of Contents
 
 1. [Skripte für Lehrende](teacher_scripts.md)
-2. [Metriken](metrics/readme.md)
-3. [Related Work](related_work/readme.md)
-4. [Design Dokument](design_document/readme.md)
+2. [Aufgabenrepository erstellen](create_tasks_repository.md)
+3. [Metriken](metrics/readme.md)
+4. [Related Work](related_work/readme.md)
+5. [Design Dokument](design_document/readme.md)
