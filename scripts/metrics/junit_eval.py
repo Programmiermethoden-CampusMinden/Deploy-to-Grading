@@ -41,6 +41,7 @@ USAGE = """usage: junit_eval.py [taskname(optional)]
        taskname    Prefix of the task used for env variables.
 """
 
+DEFAULT_POINTS_DEFAULT_VALUE = 1
 ROUNDING_DECIMAL_PLACES = 2
 
 def _load_xml_files():
@@ -111,7 +112,7 @@ def _main():
     taskname = metric_utils.get_taskname()
 
     # Get env variables
-    default_points = 1
+    default_points = DEFAULT_POINTS_DEFAULT_VALUE
     if metric_utils.has_env_variable(DEFAULT_POINTS_ENV_KEY, taskname):
         default_points = int(metric_utils.get_env_variable(
             DEFAULT_POINTS_ENV_KEY, taskname, USAGE))
