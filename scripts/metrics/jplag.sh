@@ -20,7 +20,8 @@ JPLAG_FILE=jplag-${JPLAG_VERSION}-jar-with-dependencies.jar
 
 STUDENT_REPO_PATH=repos/
 TEMPLATE_PATH=template_repo/
-OUT_PATH=${JPLAG_PATH}results/
+# We do not add file ending here as it is always appended by JPlag.
+OUT_PATH=${JPLAG_PATH}jplag_results
 
 # Clone template repository if known. Fail if not known.
 if [ -z ${ASSIGNMENT_TEMPLATE_REPOSITORY} ]
@@ -36,6 +37,8 @@ if [ ! -e ${JPLAG_PATH}${JPLAG_FILE} ]
 then
     wget -P ${JPLAG_PATH} ${JPLAG_URL}${JPLAG_FILE}
 fi
+
+mkdir ${OUT_PATH}
 
 # Execute JPlag
 java -jar ${JPLAG_PATH}${JPLAG_FILE} -l java -r ${OUT_PATH} \
