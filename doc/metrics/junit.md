@@ -20,14 +20,16 @@ metrics:
     overall_points: 10
 ```
 
-- `default_points`: Gibt die standardmäßige Punktzahl eines einzelnen Tests an.
-- `overall_points` (optional): Gibt die Gesamtpunktzahl an, die die
+- `default_points`: (optional) Gibt die standardmäßige Punktzahl eines
+  einzelnen Tests an. Der Standardwert für `default_points` ist "1", wenn
+  kein anderer Wert angegeben wurde.
+- `overall_points`: (optional): Gibt die Gesamtpunktzahl an, die die
   JUnit-Metrik bei null Fehlern gibt. Fehlt diese Angabe, dann wird die über
   die Anzahl der Tests definierte Gesamtpunktzahl verwendet. Wenn über
   `overall_points` eine Punktzahl angegeben ist, so wird diese Punktzahl auf
   die gegebene Konfiguration umgerechnet. Achtung: Bei Verwendung dieser Option
-   kann es vorkommen, dass durch falsche Unittests eine "krumme" Punktzahl von
-   der Gesamtpunktzahl abgezogen wird.
+  kann es vorkommen, dass durch falsche Unittests eine "krumme" Punktzahl von
+  der Gesamtpunktzahl abgezogen wird.
 
 Damit die JUnit-Metrik ausgeführt werden kann, muss der `test`-Task in der
 `build.gradle`-Datei korrekt konfiguriert sein. Der Pfad zum Speichern der
