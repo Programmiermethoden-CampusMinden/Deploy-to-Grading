@@ -26,7 +26,7 @@ OUT_PATH=${JPLAG_PATH}jplag_results
 # Clone template repository if known. Fail if not known.
 if [ -z ${ASSIGNMENT_TEMPLATE_REPOSITORY} ]
 then
-    echo "No template repository is set. Exiting."
+    echo "No template repository is set. Exiting plagiarism check."
     exit -1
 else
     git clone ${ASSIGNMENT_TEMPLATE_REPOSITORY} ${JPLAG_PATH}${TEMPLATE_PATH}
