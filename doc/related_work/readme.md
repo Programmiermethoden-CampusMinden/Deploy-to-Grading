@@ -47,7 +47,7 @@ Durch die folgenden Punkte können wir uns von anderen AutoGradern abgrenzen:
 * Wegen des Git-Workflows können wir kein ProFormA 2.0 verwenden
   * Das ist eher eine Einschränkung als Abgrenzung. Aber im Hinblick auf ABP 2023 relevant
 
-## Table of Contents
+## Inhaltsverzeichnis
 
 1. [Konferenzliste](https://github.com/Programmiermethoden/Dungeon/blob/master/doc/related_work/conferences.md)
 2. [Automatische Bewertungssysteme](autograder/readme.md)

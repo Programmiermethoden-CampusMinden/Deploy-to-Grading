@@ -1,31 +1,22 @@
-# Documentation on Deploy-to-Grading
+---
+title: Deploy-to-Grading Dokumentation
+---
 
-## Local usage
+Deploy-to-Grading (D2G) ist eine Toolchain zur automatischen Analyse und Bewertung von Programmieraufgaben. Im Gegensatz zu anderen populären Lösungen nutzt es frei verfügbare Rechenkapazität (GitHub Runner) und basiert auf Git. Aktuell sind nur Tools zur Bewertung von Java-Programmieraufgaben implementiert.
 
-D2G can be run on any Linux operating system that comes with Bash and Python 3. To execute D2G, make sure that you are in an assignment folder, that contains an `assignment.yml` file. Furthermore, you need to set the `D2G_PATH` environment variable to the root directory of your cloned D2G repository. Execute the following command to run D2G:
+## Lokale Ausführung
+
+D2G kann lokal auf jedem Linux Betriebssystem ausgeführt werden, auf dem Bash und Python 3 zur Verfügung stehen. Um D2G auszuführen, muss sichergestellt werden, dass man sich in einem Ordner befindet, der eine `assignment.yml`-Datei enthält. Des Weiteren muss die `D2G_PATH`-Umgebungsvariable einen Pfad zum Hauptverzeichnis des geklonten D2G-Repositorys enthalten. Dazu muss der Befehl `export D2G_PATH=/home/{USER}/Deploy-to-Grading` ausgeführt werden. Sollte das D2G-Repository nicht im `Home`-Verzeichnis des Nutzers liegen, muss der Pfad entsprechend angepasst werden. Zum Ausführen des Deploy-to-Grading muss der folgende Befehl ausgeführt werden:
 
 ```bash
 $D2G_PATH/scripts/deploy_to_grading.py
 ```
 
-## Execution as a CI/CD-Pipeline
+## Ausführung als CI/CD-Pipeline
 
-You can use D2G as a CI/CD-Pipeline by adding a GitHub Workflow to your repository. The following listing shows an example configuration for such a pipeline:
+D2G kann auch als GitHub Workflow in ein Repository eingebunden werden, damit sie automatisch ausgeführt wird. Dazu muss der [Anleitung zum Erstellen eines Aufgabenrepositorys](create_tasks_repository.md) gefolgt werden.
 
-```
-name: Deploy-to-Grading
-on:
-  workflow_dispatch:
-  
-jobs:
-  deploy-to-grading:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: programmiermethoden/deploy-to-grading@master
-```
-
-## Table of Contents
+## Inhaltsverzeichnis
 
 1. [Skripte für Lehrende](teacher_scripts.md)
 2. [Aufgabenrepository erstellen](create_tasks_repository.md)
