@@ -40,7 +40,7 @@ Studierenden wird pro Praktikumseinheit eine ausgewählte Liste an Aufgaben gest
 
 *Anmerkung 2: @AMatutat hat mir mittlerweile gesagt, dass ihr im letzten Semester den Studis alle Aufgaben auf einmal zur Verfügung gestellt habt.*
 
-## Table of Contents
+## Inhaltsverzeichnis
 
 1. [Dateistruktur von Aufgaben](file_structure.md)
 2. [Definition von Konfigurationsdateien für Aufgabenblatt- und Aufgabendefinition](file_structure.md)

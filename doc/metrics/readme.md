@@ -4,7 +4,7 @@ title: Metriken
 
 In diesem Kapitel wird beschrieben, wie die implementierten Metriken für eine Aufgabenstellungen genutzt werden können.
 
-## Table of Contents
+## Inhaltsverzeichnis
 
 1. [Codeformat](codeformat.md)
 2. [Compile](compile.md)
