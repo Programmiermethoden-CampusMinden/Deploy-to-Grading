@@ -2,7 +2,7 @@
 title: Aufgabenrepository erstellen
 ---
 
-Ein Aufgabenrepository ist ein Git-Repository, welches den Studierenden von den Lehrenden zur Verfügung gestellt wird und welches die Aufgaben enthält, die die Studierenden innerhalb einer Abgabefrist bearbeiten sollen. Die Studierenden sollen ein Fork dieses Repositorys erstellen und ihre Lösungen auf einem separatem Branch hochladen. Anschließend sollen die Studierenden einen Pull-Request erstellen, dessen URL im LMS abgegeben werden soll. Die Deploy-to-Grading-Pipeline wird automatisch ausgeführt, wenn ein neuer Commit dem Pull Request hinzugefügt wird.
+Ein Aufgabenrepository ist ein Git-Repository, welches den Studierenden von den Lehrenden zur Verfügung gestellt wird und welches die Aufgaben enthält, die die Studierenden innerhalb einer Abgabefrist bearbeiten sollen. Die Studierenden sollen ein Fork dieses Repositorys erstellen und ihre Lösungen auf einem separatem Branch hochladen. Anschließend sollen die Studierenden einen Pull-Request gegem ihren Fork stellen, dessen URL im LMS abgegeben werden soll. Die Deploy-to-Grading-Pipeline wird automatisch ausgeführt, wenn ein neuer Commit dem Pull Request hinzugefügt wird.
 
 Um ein Aufgabenrepository mit Aufgaben zu befüllen und zu konfigurieren, müssen die folgenden Schritte ausgeführt werden:
 
