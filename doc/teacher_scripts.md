@@ -21,7 +21,7 @@ Das Ergebnis des Skript ist eine Excel-Datei, in der für jeden Studierenden die
 Das Skript `scripts/teacher_summary.py` fasst die Ergebnisse der Studierenden über mehrere Aufgabenblätter hinweg zusammen und berechnet eine Gesamtpunktzahl. Dazu müssen dem Skript die vom oben beschriebenen Skript generierten Dateien wie im folgenden Befehl übergeben werden:
 
 ```bash
-scripts/teacher_summary.py [file1] [file2...]
+scripts/teacher_summary.py [file1] [file2] ...
 ```
 
 Die aus der Ausführung resultierende Excel-Datei enthält für jeden Studierenden dessen LMS-Benutzernamen, vollständigen Namen, die erreichte Gesamtpunktzahl zusammen mit der maximal erreichbaren Gesamtpunktzahl sowie die erreichten Punkte und maximal erreichbaren Punkte für jedes Aufgabenblatt. Diese Ausgabe muss manuell zurück in das LMS überführt werden.
