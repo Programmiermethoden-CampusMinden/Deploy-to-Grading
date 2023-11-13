@@ -25,3 +25,9 @@ jobs:
       - uses: programmiermethoden/deploy-to-grading@master
 ```
 
+## Table of Contents
+
+1. [Skripte für Lehrende](teacher_scripts.md)
+2. [Metriken](metrics/readme.md)
+3. [Related Work](related_work/readme.md)
+4. [Design Dokument](design_document/readme.md)
