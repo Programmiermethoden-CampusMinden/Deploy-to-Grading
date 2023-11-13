@@ -6,7 +6,7 @@ Für Lehrende stehen neben dem Skript `scripts/deploy_to_grading.py` zur Ausfüh
 
 ### deploy_to_grading_teacher.py
 
-Das Skript `scripts/deploy_to_grading_teacher.py` ermittelt für ein Aufgabenblatt die von den Studierenden erreichten Punkte und fasst diese in einer Excel-Datei zusammen. Über den folgenden Befehl kann das Skript gestartet werden. Dabei muss die `D2G_PATH`-Umgebungsvariable, wie in der [README](readme.md) beschrieben, gesetzt sein.
+Das Skript `scripts/deploy_to_grading_teacher.py` ermittelt für ein Aufgabenblatt die von den Studierenden erreichten Punkte und fasst diese in einer Excel-Datei zusammen. Über den folgenden Befehl kann das Skript gestartet werden. Dabei muss die `D2G_PATH`-Umgebungsvariable, wie in der [README](readme.md) beschrieben, gesetzt sein. Wenn der Plagiatscheck mit ausgeführt werden soll, dann muss zusätzlich die Umgebungsvariable `ASSIGNMENT_TEMPLATE_REPOSITORY` über den `export`-Befehl auf die URL des Vorgaberepositorys gesetzt sein.
 
 ```bash
 scripts/deploy_to_grading_teacher.py [submissions.xlsx]
