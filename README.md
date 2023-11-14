@@ -23,6 +23,21 @@ mind that the English documentation may therefore not be available or may be
 slightly out of date. If you have any questions, problems or suggestions, please
 feel free to contact us in English or German.
 
+## Citation
+
+Please cite the following paper in your publications if you use Deploy-to-Grading
+in your research:
+
+```bibtex
+@inproceedings{Deploy-to-Grading2023,
+    author    = "Kirsch, André and Matutat, André and Reinsch, Malte and George, Birgit Christina and Gips, Carsten",
+    title     = "Deploy-to-Grading: Automatische Bewertung von Programmieraufgaben mit CI/CD-Pipelines",
+    year      = 2023,
+    doi       = "10.18420/abp2023-11",
+    booktitle = "Proceedings of the Sixth Workshop "Automatische Bewertung von Programmieraufgaben" (ABP 2023)",
+    publisher = "Gesellschaft für Informatik e.V.",
+}
+```
 
 ## Credits
 
