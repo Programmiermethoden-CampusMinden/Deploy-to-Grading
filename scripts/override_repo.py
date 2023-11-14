@@ -29,7 +29,7 @@ import subprocess
 import shutil
 
 TEMPLATE_REPO_URL_KEY = "ASSIGNMENT_TEMPLATE_REPOSITORY"
-DIR_PREFIX = "template/"
+DIR_PREFIX = "../template/"
 DEFAULT_NO_OVERRIDE = [".git/"]
 
 def _create_arg_parser():
@@ -109,16 +109,15 @@ def _override_files(taskname, repository, no_override):
             if not _is_ignored(filepath[len(template_repo_path)+1:], no_override):
                 shutil.copyfile(filepath, filepath[len(template_repo_path)+1:])
 
-def _cleanup(repository):
+def _cleanup():
     # Deletes the previously cloned repository.
-    repo_name = _get_repository_name(repository)
-    shutil.rmtree(DIR_PREFIX+repo_name)
+    shutil.rmtree(DIR_PREFIX)
 
 def _main():
     args = _parse_args()
     _clone_template_repository(args.repository)
     _override_files(args.taskname, args.repository, args.no_override)
-    _cleanup(args.repository)
+    _cleanup()
 
 if __name__ == "__main__":
     _main()
