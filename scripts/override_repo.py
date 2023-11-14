@@ -87,9 +87,6 @@ def _clone_template_repository(url):
         print("Failed to clone template repository.")
         _create_arg_parser().print_help()
         exit(-1)
-    # TODO: It might be useful to only figure out the last shared commit
-    # and update the files based on that commit. Currently two template
-    # versions will be mixed if the student repository is not up-to-date.
 
 def _is_ignored(filepath, no_override):
     # Check if a file or filepath is ignored and should not be overriden.
