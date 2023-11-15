@@ -64,9 +64,19 @@ def _override_repo(taskname, repository, task_configuration):
     # Step 4 of the Deploy-to-Grading pipeline
     script_path = os.path.join(os.environ["D2G_PATH"],
         "scripts/override_repo.py")
-    proc = subprocess.run(
-        [script_path, "-t", taskname, "-r", repository], cwd=taskname,
-        env=task_configuration)
+
+    # Run override_repo.py either for a task or the assignment.yml. It is
+    # executed for the assignment.yml if the taskname is None.
+    proc = None
+    if taskname:
+        proc = subprocess.run(
+            [script_path, "-t", taskname, "-r", repository], cwd=taskname,
+            env=task_configuration)
+    else:
+        proc = subprocess.run([script_path, "-a", "-r", repository])
+
+    # Exit D2G completely on error, as we can't validate the correctness
+    # of the student submission.
     if proc.returncode != 0:
         _print_error_and_exit("Failed to execute override_repo.py")
 
@@ -138,6 +148,8 @@ def _revert_checkout():
 def _main():
     assignment_conf = _load_assignment_config()
     _checkout_due_date(assignment_conf["ASSIGNMENT_DUE_DATE"])
+    _override_repo(None,
+        assignment_conf["ASSIGNMENT_TEMPLATE_REPOSITORY"], None)
 
     for task in assignment_conf["ASSIGNMENT_TASKS"].split(" "):
         _evaluate_task(task, assignment_conf)

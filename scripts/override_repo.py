@@ -6,14 +6,18 @@
 # as well as the template repository and that should not be overridden
 # need to be listed in the configuration file of the current task. Check
 # the [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/repository_structure/task_and_assignment_structure.md#format-aufgabendefinition-taskyml)
-# on how to define files that should not be overwritten.
+# on how to define files that should not be overwritten. Furthermore, it
+# checks for differences in the config files. The execution fails, if it
+# detects any changes.
 # Make sure that the script is executed inside a task folder and that the
 # task configuration was loaded correctly.
 #
-# usage: override_repo.py [-h] [-t TASKNAME] -r REPOSITORY
+# usage: override_repo.py [-h] [-t TASKNAME] [-a] -r REPOSITORY
 #  Params:
 #  h, help:        Show a help message and exit
 #  t, taskname:    Name of the task used as env variable prefix
+#  a, assignment:  Set to true, if only the difference in assignment.yml
+#                  should be checked
 #  r, repository:  URL used for cloning the template repository
 #
 # Error handling:
@@ -29,8 +33,11 @@ import subprocess
 import shutil
 
 TEMPLATE_REPO_URL_KEY = "ASSIGNMENT_TEMPLATE_REPOSITORY"
-DIR_PREFIX = "template/"
+DIR_PREFIX = "../template/"
 DEFAULT_NO_OVERRIDE = [".git/"]
+
+TASK_CONFIG_FILENAME = "task.yml"
+ASSIGNMENT_CONFIG_FILENAME = "assignment.yml"
 
 def _create_arg_parser():
     # Create a new argumen parser and returns it
@@ -43,6 +50,9 @@ def _create_arg_parser():
     parser.add_argument("-t", "--taskname",
         action="store", default="task",
         help="Name of the task used as env variable prefix.")
+    parser.add_argument("-a", "--assignment",
+        action="store_true",
+        help="Set to true, if only the difference in assignment.yml should be checked.")
     parser.add_argument("-r", "--repository",
         action="store", required=True,
         help="URL used for cloning the template repository.")
@@ -97,7 +107,49 @@ def _is_ignored(filepath, no_override):
             return True
     return False
 
+def _check_for_config_change(taskname, repository):
+    # Compares the config in the student repository with the same
+    # config in the template repository. Exit with an error, if they do not
+    # have the same content
+
+    # Create the paths to the config files. Differentiate between task.yml
+    # and assingment.yml. The assignment.yml is checked, if the filename is
+    # None.
+    student_config_path = ASSIGNMENT_CONFIG_FILENAME if taskname is None \
+        else TASK_CONFIG_FILENAME
+    repo_name = _get_repository_name(repository)
+    template_config_path = None
+    if taskname is None:
+        template_config_path = os.path.join(DIR_PREFIX, repo_name, \
+            ASSIGNMENT_CONFIG_FILENAME)
+    else:
+        template_config_path = os.path.join(DIR_PREFIX, repo_name, taskname,
+            TASK_CONFIG_FILENAME)
+
+    # We assume that both the student config as well as the template config
+    # do exist here, since deploy-to-grading would have failed earlier in
+    # case of the student_config. In case of the template_config, the template
+    # repository is not configured correctly, which we don't want to handle
+    # here.
+    with open(student_config_path) as student_config, \
+            open(template_config_path) as template_config:
+        student_content = student_config.read()
+        template_content = template_config.read()
+
+        # Compare the content of the file. Fail, if it is not the same.
+        if student_content != template_content:
+            if taskname is None:
+                print(f"Student config and template assignment config"+
+                    " are not matching. Has the student config been edited?")
+            else:
+                print(f"Student config and template config in {taskname}"+
+                    " are not matching. Has the student config been edited?")
+            _cleanup()
+            exit(-1)
+
+
 def _override_files(taskname, repository, no_override):
+    # Override all template files that are not listed in no_override
     repo_name = _get_repository_name(repository)
 
     # Loop through all files including files in subdirectories
@@ -109,16 +161,18 @@ def _override_files(taskname, repository, no_override):
             if not _is_ignored(filepath[len(template_repo_path)+1:], no_override):
                 shutil.copyfile(filepath, filepath[len(template_repo_path)+1:])
 
-def _cleanup(repository):
+def _cleanup():
     # Deletes the previously cloned repository.
-    repo_name = _get_repository_name(repository)
-    shutil.rmtree(DIR_PREFIX+repo_name)
+    shutil.rmtree(DIR_PREFIX)
 
 def _main():
     args = _parse_args()
     _clone_template_repository(args.repository)
-    _override_files(args.taskname, args.repository, args.no_override)
-    _cleanup(args.repository)
+    _check_for_config_change(None if args.assignment else args.taskname,
+        args.repository)
+    if (not args.assignment):
+        _override_files(args.taskname, args.repository, args.no_override)
+    _cleanup()
 
 if __name__ == "__main__":
     _main()
