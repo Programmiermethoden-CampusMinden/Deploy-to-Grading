@@ -98,6 +98,7 @@ def _is_ignored(filepath, no_override):
     return False
 
 def _override_files(taskname, repository, no_override):
+    # Override all template files that are not listed in no_override
     repo_name = _get_repository_name(repository)
 
     # Loop through all files including files in subdirectories
