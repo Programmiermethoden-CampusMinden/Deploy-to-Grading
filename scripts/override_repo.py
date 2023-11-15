@@ -6,14 +6,18 @@
 # as well as the template repository and that should not be overridden
 # need to be listed in the configuration file of the current task. Check
 # the [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/repository_structure/task_and_assignment_structure.md#format-aufgabendefinition-taskyml)
-# on how to define files that should not be overwritten.
+# on how to define files that should not be overwritten. Furthermore, it
+# checks for differences in the config files. The execution fails, if it
+# detects any changes.
 # Make sure that the script is executed inside a task folder and that the
 # task configuration was loaded correctly.
 #
-# usage: override_repo.py [-h] [-t TASKNAME] -r REPOSITORY
+# usage: override_repo.py [-h] [-t TASKNAME] [-a] -r REPOSITORY
 #  Params:
 #  h, help:        Show a help message and exit
 #  t, taskname:    Name of the task used as env variable prefix
+#  a, assignment:  Set to true, if only the difference in assignment.yml
+#                  should be checked
 #  r, repository:  URL used for cloning the template repository
 #
 # Error handling:
@@ -44,6 +48,9 @@ def _create_arg_parser():
     parser.add_argument("-t", "--taskname",
         action="store", default="task",
         help="Name of the task used as env variable prefix.")
+    parser.add_argument("-a", "--assignment",
+        action="store_true",
+        help="Set to true, if only the difference in assignment.yml should be checked.")
     parser.add_argument("-r", "--repository",
         action="store", required=True,
         help="URL used for cloning the template repository.")
@@ -99,7 +106,7 @@ def _is_ignored(filepath, no_override):
     return False
 
 def _check_for_config_change(taskname, repository):
-    # Compares the task.yml config in the student repository with the same
+    # Compares the config in the student repository with the same
     # config in the template repository. Exit with an error, if they do not
     # have the same content
 
