@@ -35,7 +35,9 @@ import shutil
 TEMPLATE_REPO_URL_KEY = "ASSIGNMENT_TEMPLATE_REPOSITORY"
 DIR_PREFIX = "../template/"
 DEFAULT_NO_OVERRIDE = [".git/"]
-CONFIG_FILENAME = "task.yml"
+
+TASK_CONFIG_FILENAME = "task.yml"
+ASSIGNMENT_CONFIG_FILENAME = "assignment.yml"
 
 def _create_arg_parser():
     # Create a new argumen parser and returns it
@@ -110,11 +112,19 @@ def _check_for_config_change(taskname, repository):
     # config in the template repository. Exit with an error, if they do not
     # have the same content
 
-    # Create the paths to the config files.
-    student_config_path = CONFIG_FILENAME
+    # Create the paths to the config files. Differentiate between task.yml
+    # and assingment.yml. The assignment.yml is checked, if the filename is
+    # None.
+    student_config_path = ASSIGNMENT_CONFIG_FILENAME if taskname is None \
+        else TASK_CONFIG_FILENAME
     repo_name = _get_repository_name(repository)
-    template_config_path = os.path.join(DIR_PREFIX, repo_name, taskname,
-        CONFIG_FILENAME)
+    template_config_path = None
+    if taskname is None:
+        template_config_path = os.path.join(DIR_PREFIX, repo_name, \
+            ASSIGNMENT_CONFIG_FILENAME)
+    else:
+        template_config_path = os.path.join(DIR_PREFIX, repo_name, taskname,
+            TASK_CONFIG_FILENAME)
 
     # We assume that both the student config as well as the template config
     # do exist here, since deploy-to-grading would have failed earlier in
@@ -128,8 +138,12 @@ def _check_for_config_change(taskname, repository):
 
         # Compare the content of the file. Fail, if it is not the same.
         if student_content != template_content:
-            print(f"Student config and template config in {taskname}"+
-                " are not matching. Has the student config been edited?")
+            if taskname is None:
+                print(f"Student config and template assignment config"+
+                    " are not matching. Has the student config been edited?")
+            else:
+                print(f"Student config and template config in {taskname}"+
+                    " are not matching. Has the student config been edited?")
             _cleanup()
             exit(-1)
 
@@ -154,8 +168,10 @@ def _cleanup():
 def _main():
     args = _parse_args()
     _clone_template_repository(args.repository)
-    _check_for_config_change(args.taskname, args.repository)
-    _override_files(args.taskname, args.repository, args.no_override)
+    _check_for_config_change(None if args.assignment else args.taskname,
+        args.repository)
+    if (not args.assignment):
+        _override_files(args.taskname, args.repository, args.no_override)
     _cleanup()
 
 if __name__ == "__main__":
