@@ -31,6 +31,7 @@ import shutil
 TEMPLATE_REPO_URL_KEY = "ASSIGNMENT_TEMPLATE_REPOSITORY"
 DIR_PREFIX = "../template/"
 DEFAULT_NO_OVERRIDE = [".git/"]
+CONFIG_FILENAME = "task.yml"
 
 def _create_arg_parser():
     # Create a new argumen parser and returns it
@@ -97,6 +98,35 @@ def _is_ignored(filepath, no_override):
             return True
     return False
 
+def _check_for_config_change(taskname, repository):
+    # Compares the task.yml config in the student repository with the same
+    # config in the template repository. Exit with an error, if they do not
+    # have the same content
+
+    # Create the paths to the config files.
+    student_config_path = CONFIG_FILENAME
+    repo_name = _get_repository_name(repository)
+    template_config_path = os.path.join(DIR_PREFIX, repo_name, taskname,
+        CONFIG_FILENAME)
+
+    # We assume that both the student config as well as the template config
+    # do exist here, since deploy-to-grading would have failed earlier in
+    # case of the student_config. In case of the template_config, the template
+    # repository is not configured correctly, which we don't want to handle
+    # here.
+    with open(student_config_path) as student_config, \
+            open(template_config_path) as template_config:
+        student_content = student_config.read()
+        template_content = template_config.read()
+
+        # Compare the content of the file. Fail, if it is not the same.
+        if student_content != template_content:
+            print(f"Student config and template config in {taskname}"+
+                " are not matching. Has the student config been edited?")
+            _cleanup()
+            exit(-1)
+
+
 def _override_files(taskname, repository, no_override):
     # Override all template files that are not listed in no_override
     repo_name = _get_repository_name(repository)
@@ -117,6 +147,7 @@ def _cleanup():
 def _main():
     args = _parse_args()
     _clone_template_repository(args.repository)
+    _check_for_config_change(args.taskname, args.repository)
     _override_files(args.taskname, args.repository, args.no_override)
     _cleanup()
 
