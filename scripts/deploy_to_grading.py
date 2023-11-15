@@ -68,7 +68,8 @@ def _override_repo(taskname, repository, task_configuration):
         [script_path, "-t", taskname, "-r", repository], cwd=taskname,
         env=task_configuration)
     if proc.returncode != 0:
-        _print_error_and_exit("Failed to execute override_repo.py")
+        _print_error_and_exit("Failed to execute override_repo.py."
+            + "Has a configuration file been edited?")
 
 def _get_metric_script_path(metric):
     # Search for an evaluation script for the given metrics. Looks for 
