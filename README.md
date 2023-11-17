@@ -5,7 +5,7 @@ Deploy-to-Grading (D2G) is a toolchain for automated analysis and grading of pro
 
 ## Usage
 
-For information on how to use D2G, take a look at the [documentation (in german)](doc/readme.md).
+For information on how to use D2G, take a look at the [documentation (in german)](doc/readme.md). If you want to try out D2G, you can also take a look at the [demo repository](https://github.com/Programmiermethoden/D2G-Aufgaben-Demo).
 
 
 ## Contributing
