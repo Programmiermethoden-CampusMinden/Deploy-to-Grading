@@ -34,7 +34,7 @@ in your research:
     title     = "Deploy-to-Grading: Automatische Bewertung von Programmieraufgaben mit CI/CD-Pipelines",
     year      = 2023,
     doi       = "10.18420/abp2023-11",
-    booktitle = "Proceedings of the Sixth Workshop "Automatische Bewertung von Programmieraufgaben" (ABP 2023)",
+    booktitle = "Proceedings of the Sixth Workshop 'Automatische Bewertung von Programmieraufgaben' (ABP 2023)",
     publisher = "Gesellschaft für Informatik e.V.",
 }
 ```
