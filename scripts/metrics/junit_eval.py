@@ -129,6 +129,15 @@ def _main():
     point_multiplier = _get_point_multiplier(overall_points, max_points)
     mistakes = _summarize_mistakes(data, default_points, point_multiplier)
 
+    # Add information when the metric was not executed succesfully.
+    if max_points == 0:
+        mistakes = [
+            metric_utils.create_mistake(88, # Actual points don't matter here.
+                "Die JUnit-Metrik konnte nicht ausgeführt werden.\n\t"
+                + "Die angegebene Maximalpunktzahl ist daher ungültig. "
+                + "Bitte stellen Sie sicher, dass die Unittests kompilieren.")
+        ]
+
     # Create and print yaml
     results = metric_utils.generate_final_results(
         mistakes, round(points*point_multiplier, ROUNDING_DECIMAL_PLACES),
