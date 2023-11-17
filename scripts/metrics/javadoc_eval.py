@@ -72,8 +72,9 @@ def _get_errors(data):
         rel_file_path = _get_relative_file_path(file.attrib["name"])
         for error in file:
             errors.append({
-                "source": "%s Ln %s, Col %s" % (rel_file_path,
-                    error.attrib["line"], error.attrib["column"]),
+                "source": "%s Ln %s %s" % (rel_file_path,
+                    error.attrib["line"],", Col %s" % error.attrib["column"] \
+                        if "column" in error.attrib else None),
                 "message": error.attrib["message"],
                 "type": _get_error_type(error.attrib["source"])
             })
