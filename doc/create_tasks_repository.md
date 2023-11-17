@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: akirsch1/deploy-to-grading@master
+      - uses: programmiermethoden/deploy-to-grading@master
 ```
 
 Damit wird die Deploy-to-Grading-Pipeline immer bei neuen Änderungen eines Pull Requests ausgeführt, sie kann aber auch manuell gestartet werden.
