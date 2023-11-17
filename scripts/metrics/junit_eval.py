@@ -84,9 +84,9 @@ def _get_points(data, default_points):
 def _get_point_multiplier(overall_points, max_points):
     # Calculate point multiplier for multiplying it with the actual point
     # values.
-    if overall_points is not None:
-        return overall_points / max_points
-    return 1
+    if max_points == 0 or overall_points is None:
+        return 1
+    return overall_points / max_points
 
 def _summarize_mistakes(data, default_points, point_multiplier):
     # Collect all failed test cases and create a summery containing
