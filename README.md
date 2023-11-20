@@ -1,4 +1,6 @@
-# Deploy-to-Grading
+<p align="center"> 
+	<img alt="D2G logo" src="doc/logo/D2G_logo.png" width="300">
+</p>
 
 Deploy-to-Grading (D2G) is a toolchain for automated analysis and grading of programming tasks. Contrary to other popular solutions, it uses freely available computing resources and is based on Git. Currently, only tools for grading Java assignments are implemented.
 
