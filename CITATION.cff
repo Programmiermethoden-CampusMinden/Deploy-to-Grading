@@ -15,7 +15,8 @@ authors:
     orcid: 'https://orcid.org/0000-0002-4230-9060'
   - given-names: André
     family-names: Kirsch
-repository-code: 'https://github.com/Programmiermethoden/Deploy-to-Grading'
+repository-code: >-
+  https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading
 abstract: >-
   Deploy-to-Grading is a toolchain for automated analysis
   and grading of programming tasks.
