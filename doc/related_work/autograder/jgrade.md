@@ -6,7 +6,7 @@ url: https://github.com/espertus/jgrade
 ## Bibtex
 
 ```
-@misc{jgrade, 
+@misc{jgrade,
   author        = {Tim Kutcher},
   title         = {JGrade},
   year          = {2020},
@@ -29,7 +29,7 @@ Erstmal vorweg, wirklich optimal finde ich die nicht. Folgendermaßen ist die Or
 ```
 src/main/java
 -- staff                        Sammelordner für irgendwie alles, was nicht von Studierenden kommt
--- -- hello                             
+-- -- hello
 -- -- -- GradeHello.java        JGrade-spezifische Klasse, die die Tests anstößt
 -- -- -- Greeting.java          Interface, das von beiden Hello-Klassen implementiert wird
 -- -- -- Hello.java             Beispielimplementierung/Lösung
@@ -40,4 +40,4 @@ src/main/java
 ```
 *Anmerkung 1: Nutzen hier einen bool, um zwischen Grading der Beispiellösung und der Studierendenlösung zu wechseln.*
 
-Des Weiteren interessant ist in dem Video, wie "Log"-Tests durchgeführt werden. So wird über `System.setOut` ein anderer Out-Stream gesetzt. Damit könnte man zum Beispiel [dieses hier](https://github.com/Programmiermethoden/Homework-Solutions/blob/f683ed6d94c3d1a344c4f3bf8af9ae96b15425b5/type_object_pattern/loesung/src/MonsterTest.java) gut testen.
+Des Weiteren interessant ist in dem Video, wie "Log"-Tests durchgeführt werden. So wird über `System.setOut` ein anderer Out-Stream gesetzt. Damit könnte man zum Beispiel [dieses hier](https://github.com/Programmiermethoden-CampusMinden/Homework-Solutions/blob/f683ed6d94c3d1a344c4f3bf8af9ae96b15425b5/type_object_pattern/loesung/src/MonsterTest.java) gut testen.

@@ -3,8 +3,8 @@
 # Evaluates the junit test results. It is required to execute junit.sh
 # prior to the execution of this script. This script parses the test
 # results saved in "build/results/junit/xml" and converts them into the
-# "results.yml" format defined in the 
-# [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
+# "results.yml" format defined in the
+# [documentation](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # The output is printed to the console. Make sure to execute the script
 # inside a task folder and that the task configuration defined in a
 # task.yml file was loaded correctly using the load_yaml scripts.
@@ -16,7 +16,7 @@
 #               value.
 #
 # Error handling:
-# - Exits with an error code when the 
+# - Exits with an error code when the
 #   %TASKNAME%_METRICS_JUNIT_POINTS_PER_TEST environment variable is not
 #   set.
 #
@@ -78,7 +78,7 @@ def _get_points(data, default_points):
                 if len(testcase) == 0:
                     points += possible_points
                 max_points += possible_points
-    
+
     return (points, max_points)
 
 def _get_point_multiplier(overall_points, max_points):

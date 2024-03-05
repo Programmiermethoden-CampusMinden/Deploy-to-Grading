@@ -2,9 +2,9 @@
 
 # Collects and summarizes the results of all defined metrics for a given
 # task. This script automatically executes all evaluation scripts for the
-# metrics defined in the environment variable %TASKNAME%_METRICS. The 
+# metrics defined in the environment variable %TASKNAME%_METRICS. The
 # output is captured and merged into the format described in the
-# [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
+# [documentation](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # and printed to the console. As metric evaluation scripts, both bash and
 # python scripts are accepted. To create a new metric evaluation script,
 # you must follow the rules mentioned in the [documentation](TODO).

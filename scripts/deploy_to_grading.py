@@ -2,7 +2,7 @@
 
 # Main script of the Deploy-to-Grading pipeline for checking student
 # assignments. It runs all steps described in the
-# [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#ablauf-in-der-gh-action).
+# [documentation](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#ablauf-in-der-gh-action).
 # Make sure that the script is executed inside an assignment folder
 # and that the env variable D2G_PATH is set to a path to the
 # Deploy-to-Grading pipeline.
@@ -81,7 +81,7 @@ def _override_repo(taskname, repository, task_configuration):
         _print_error_and_exit("Failed to execute override_repo.py")
 
 def _get_metric_script_path(metric):
-    # Search for an evaluation script for the given metrics. Looks for 
+    # Search for an evaluation script for the given metrics. Looks for
     # scripts written in bash or python. If such a script does not exist,
     # it assumes that the metric is a gradle task.
     base_path = os.path.join(os.environ["D2G_PATH"],
@@ -97,7 +97,7 @@ def _execute_metrics(taskname, metrics):
     # Runs step 5 of the Deploy-to-Grading pipeline for every metric
     for metric in metrics.split(" "):
         metric_script = _get_metric_script_path(metric)
-        
+
         proc = subprocess.run(metric_script, cwd=taskname)
         if proc.returncode != 0:
             _print_error_and_exit("Failed to execute metric %s" % metric)
@@ -155,7 +155,7 @@ def _main():
         _evaluate_task(task, assignment_conf)
 
     _present_results(assignment_conf)
-    
+
     _revert_checkout()
 
 if __name__ == "__main__":

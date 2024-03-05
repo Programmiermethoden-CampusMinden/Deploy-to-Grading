@@ -1,4 +1,4 @@
-<p align="center"> 
+<p align="center">
 	<img alt="D2G logo" src="doc/logo/D2G_logo.png" width="300">
 </p>
 
@@ -7,7 +7,7 @@ Deploy-to-Grading (D2G) is a toolchain for automated analysis and grading of pro
 
 ## Usage
 
-For information on how to use D2G, take a look at the [documentation (in german)](doc/readme.md). If you want to try out D2G, you can also take a look at the [demo repository](https://github.com/Programmiermethoden/D2G-Aufgaben-Demo).
+For information on how to use D2G, take a look at the [documentation (in german)](doc/readme.md). If you want to try out D2G, you can also take a look at the [demo repository](https://github.com/Programmiermethoden-CampusMinden/D2G-Aufgaben-Demo).
 
 
 ## Contributing
@@ -51,9 +51,9 @@ This project is funded by [Stiftung für Innovation in der Hochschullehre](https
 
 ## License
 
-This [work](https://github.com/Programmiermethoden/Deploy-to-Grading) by
+This [work](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading) by
 [André Kirsch](https://github.com/AKirsch1),
 [Carsten Gips](https://github.com/cagix), and
-[contributors](https://github.com/Programmiermethoden/Deploy-to-Grading/graphs/contributors)
+[contributors](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/graphs/contributors)
 is licensed under [CC-BY-SA-4.0](LICENSE.md).
 

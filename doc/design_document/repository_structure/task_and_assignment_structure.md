@@ -18,7 +18,7 @@ tasks:                 # Liste mit allen zu dem Aufgabenblatt gehörenden Aufgab
     - (List)
 ```
 
-*Notiz: Könnte das Abgabedatum auch aus der [schedule.yaml](https://github.com/Programmiermethoden/PM-Lecture/blob/master/data/schedule.yaml) aus PM-Lecture gelesen werden?*
+*Notiz: Könnte das Abgabedatum auch aus der [schedule.yaml](https://github.com/Programmiermethoden-CampusMinden/PM-Lecture/blob/master/data/schedule.yaml) aus PM-Lecture gelesen werden?*
 
 ### Format Aufgabendefinition (task.yml)
 
@@ -42,7 +42,7 @@ no_override:           # Liste an Dateien, die nicht mit der Vorlage überschrie
 
 #### Strategie der Punktevergabe
 
-Im Gegensatz zum [task.json-Vorschlag](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/.config/task.json) könnte man die Punktevergabe für jeden Test einzeln lösen, um das Verhältnis auch justieren zu können.
+Im Gegensatz zum [task.json-Vorschlag](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/blob/master/.config/task.json) könnte man die Punktevergabe für jeden Test einzeln lösen, um das Verhältnis auch justieren zu können.
 
 | Vergabestrategie         | Erläuterung                                                                                                                                                                                                                                                                                                                   | Anwendungsbeispiel |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
