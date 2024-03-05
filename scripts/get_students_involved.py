@@ -7,7 +7,7 @@
 # usage:
 # ```python
 # import .get_students_involved as students
-# 
+#
 # authors = students.get_students_involved(taskname)
 # ```
 #
@@ -40,7 +40,7 @@ def _clone_template_repository(url):
     os.chdir(DIR_PREFIX)
     return_code = subprocess.call(["git", "clone", "--depth", "1", url])
     os.chdir(current_dir)
-    
+
     if return_code != 0:
         print("Failed to clone template repository.")
         return False
@@ -89,11 +89,11 @@ def _is_binary_file(file_path):
             # Only read first 512 bytes as these should be enough to detect
             # a binary file.
             data = file.read(512)
-            
+
             # We treat empty files as text files
             if len(data) == 0:
                 return False
-            
+
             # Since binary files typically contain zero, this should be enough
             # to detect binary files.
             if '\x00' in data:

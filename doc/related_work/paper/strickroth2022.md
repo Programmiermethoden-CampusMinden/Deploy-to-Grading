@@ -8,8 +8,8 @@ url: https://epub.ub.uni-muenchen.de/106860/
 ```
 @article{strickroth2022,
   author    = {Sven Strickroth and Michael Striewe},
-  journal   = {International Journal of Engineering Pedagogy}, 
-  title     = {Building a Corpus of Task-Based Grading and Feedback Systems for Learning and Teaching Programming}, 
+  journal   = {International Journal of Engineering Pedagogy},
+  title     = {Building a Corpus of Task-Based Grading and Feedback Systems for Learning and Teaching Programming},
   year      = {2022},
   doi       = {10.3991/ijep.v12i5.31283}
 }

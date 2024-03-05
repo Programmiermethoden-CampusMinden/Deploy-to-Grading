@@ -6,7 +6,7 @@ url: https://classroom.github.com
 ## Bibtex
 
 ```
-@misc{ghclassroom, 
+@misc{ghclassroom,
   author        = {GitHub, Inc.},
   title         = {GitHub Classroom},
   year          = {2023},

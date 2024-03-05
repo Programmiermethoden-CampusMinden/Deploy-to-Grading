@@ -85,7 +85,7 @@ def _clone_repository(pr_url):
     # Execute clone and checkout.
     subprocess.run(["git", "clone", repo.clone_url], cwd=path)
     subprocess.run(["git", "checkout", pr.head.ref], cwd=repo_path)
-    
+
     return repo_path
 
 def _execute_deploy_to_grading(repo_path):
@@ -133,7 +133,7 @@ def _evaluate_submission(submission):
     # Return if the student repository could not be prepared.
     if not repo_path:
         return False, None, None
-    
+
     # Execute deploy to grading pipeline inside student repository.
     return_code = _execute_deploy_to_grading(repo_path)
     success = (return_code == 0)
@@ -238,7 +238,7 @@ def _check_for_plagiarism():
 
     # Execute plagiarism metric
     ret = subprocess.run([f"./scripts/metrics/{PLAGIARISM_METRIC}.sh"])
-    
+
     # Only execute eval script if the metric execution was successful.
     if ret.returncode == 0:
         subprocess.run([f"./scripts/metrics/{PLAGIARISM_METRIC}_eval.py"])
@@ -261,5 +261,4 @@ def _main():
     print(f"Finished. Saved results to {EXPORT_FILE}.")
 
 if __name__ == "__main__":
-
     _main()

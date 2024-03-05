@@ -8,8 +8,8 @@ url: https://ieeexplore.ieee.org/document/9648450
 ```
 @inproceedings{panjaitan2021,
   author    = {Bram Musuko Panjaitan and Satrio Adi Rukmono and Riza Satria Perdana},
-  booktitle = {International Conference on Data and Software Engineering (ICoDSE)}, 
-  title     = {Integration Model for Learning Management Systems, Source Control Management, and Autograders using Service-Oriented Architecture Principle}, 
+  booktitle = {International Conference on Data and Software Engineering (ICoDSE)},
+  title     = {Integration Model for Learning Management Systems, Source Control Management, and Autograders using Service-Oriented Architecture Principle},
   year      = {2021}
 }
 ```

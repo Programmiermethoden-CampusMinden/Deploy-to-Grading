@@ -143,14 +143,14 @@ def generate_final_results_all_or_nothing(result, points, error_description):
     Generates a results dictionary as defined in d2g_procedure.md in the
     documentation for the all or nothing strategy that either grants all
     or no points.
-    
+
     Params:
     result              (bool): True when the task has been solved correctly.
     points            (number): Amount of points to grant when the task has
                                 been solved correctly.
     error_description (string): Description of the mistake when the task was
                                 not solved correctly.
-    
+
     Returns:
     dict: final results for dumping as yaml
     """
@@ -161,7 +161,7 @@ def generate_final_results_all_or_nothing(result, points, error_description):
 
     if not result:
         results["mistakes"] = [create_mistake(points, error_description)]
-  
+
     # Note: We do not use the default function here as we don't want that the
     # "mistakes" variable is defined in the final dictionary.
     return results
@@ -178,7 +178,7 @@ def generate_final_results_deduction_per_error(
                                   d2g_procedure.md in the documentation.
     max_points          (number): Maximum number of points that can be reached.
     deduction_per_error (number): Number of points that are deducted per error.
-    
+
     Returns:
     dict: final results for dumping as yaml
     """
@@ -191,13 +191,13 @@ def generate_final_results_deduction_per_error(
 def generate_final_results(mistakes, points, max_points):
     """
     Default function for generating the final results.
-    
+
     Params:
     mistakes     (list): List of mistakes as defined in
                          d2g_procedure.md in the documentation.
     points     (number): Number of points for all correct answers.
     max_points (number): Maximum number of points that can be achieved.
-    
+
     Returns:
     dict: final results for dumping as yaml
     """
@@ -212,7 +212,7 @@ def generate_final_results(mistakes, points, max_points):
 def print_results(results):
     """
     Prints results to the console as yaml.
-    
+
     Params:
     results (dict): string containing yaml data of the results
     """

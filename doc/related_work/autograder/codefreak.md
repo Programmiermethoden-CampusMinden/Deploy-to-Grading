@@ -6,7 +6,7 @@ url: https://github.com/codefreak/codefreak
 ## Bibtex
 
 ```
-@misc{codefreak, 
+@misc{codefreak,
   author        = {Henning Kasch and Erik Hofer and Hannes Olszewski},
   title         = {Code FREAK},
   year          = {2018},
@@ -17,7 +17,7 @@ url: https://github.com/codefreak/codefreak
 @article{woelk2021,
   author       = {Woelk, Felix and
                   Kasch, Henning},
-  title        = {{Code FREAK: Automatisches Feedback für die 
+  title        = {{Code FREAK: Automatisches Feedback für die
                    Programmierausbildung}},
   journal      = {Die neue Hochschule},
   year         = 2021,

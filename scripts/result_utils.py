@@ -29,7 +29,7 @@ def _load_yaml_result_for_task(taskname):
             result = yaml.safe_load(result_file)
         except yaml.YAMLError:
             print("Failed to load results for task %s" % taskname)
-    
+
     return (task_conf, result)
 
 def load_yaml_results(tasks):
