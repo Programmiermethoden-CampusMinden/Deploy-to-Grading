@@ -14,7 +14,7 @@ runs:
         D2G_PATH: ${{ github.action_path }}
       shell: bash
     - name: Upload results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: D2G_results
         path: results/
