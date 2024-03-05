@@ -74,4 +74,3 @@ then
 fi
 
 echo "Successfully loaded commit with id $COMMIT_ID."
-

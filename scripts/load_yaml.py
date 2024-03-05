@@ -84,4 +84,3 @@ def load_yaml(yaml_path, prefix=None):
     yaml_data = _read_yaml(yaml_path)
     env_prefix = _get_env_prefix(yaml_path, prefix)
     return _get_env_variables(yaml_data, env_prefix)
-

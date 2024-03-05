@@ -8,8 +8,8 @@ url: https://cssplice.github.io/SIGCSE21/proc/SPLICE2021_SIGCSE_paper_8.pdf
 ```
 @inproceedings{edmison2021,
   author    = {Bob Edmison and Austin Cory Bart and Stephen Edwards},
-  booktitle = {Proceedings of SPLICE 2021 Workshop CS Education Infrastructure for All III: From Ideas to Practice}, 
-  title     = {A Proposed Workflow For Version-Controlled Assignment Management}, 
+  booktitle = {Proceedings of SPLICE 2021 Workshop CS Education Infrastructure for All III: From Ideas to Practice},
+  title     = {A Proposed Workflow For Version-Controlled Assignment Management},
   year      = {2021}
 }
 ```

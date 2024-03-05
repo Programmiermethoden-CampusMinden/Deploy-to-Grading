@@ -43,4 +43,3 @@ mkdir ${OUT_PATH}
 # Execute JPlag
 java -jar ${JPLAG_PATH}${JPLAG_FILE} -l java -r ${OUT_PATH} \
     -bc ${JPLAG_PATH}${TEMPLATE_PATH} -new ${STUDENT_REPO_PATH}
-

@@ -8,8 +8,8 @@ url: https://github.com/openHPI/codeocean
 ```
 @inproceedings{codeocean,
   author    = {Thomas Staubitz and Hauke Klement and Ralf Teusner and Jan Renz and Christoph Meinel},
-  booktitle = {IEEE Global Engineering Education Conference}, 
-  title     = {CodeOcean - A versatile platform for practical programming excercises in online environments}, 
+  booktitle = {IEEE Global Engineering Education Conference},
+  title     = {CodeOcean - A versatile platform for practical programming excercises in online environments},
   year      = {2016},
   pages     = {314-323},
   doi       = {10.1109/EDUCON.2016.7474573}

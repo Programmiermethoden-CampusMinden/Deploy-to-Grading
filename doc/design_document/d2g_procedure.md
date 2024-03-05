@@ -5,7 +5,7 @@ title: Ablauf des D2G
 ## Vergleich Docker vs Cmd-based
 
 | Docker                                                                                  | Cmd-based                                                  |
-| --------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+|-----------------------------------------------------------------------------------------|------------------------------------------------------------|
 | Kann mit wenigen Änderungen sowohl auf GitHub, GitLab als auch lokal ausgeführt werden. | Ablauf des Programms direkt in der Definition ersichtlich. |
 |                                                                                         | Kein Docker-Overhead.                                      |
 
@@ -16,7 +16,7 @@ title: Ablauf des D2G
 Im folgenden wird der Ablauf der GH-Action beschrieben:
 
 | Schritt | Bezeichnung                                                          | Beschreibung                                                                                                                                                                                                                                                                              |
-| ------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------|----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1.      | Aufgabenblatt-yml laden                                              | Einlesen der Aufgabenblatt-yml (Definiert in [Definition von Konfigurationsdateien für Aufgabenblatt- und Aufgabendefinition](repository_structure/task_and_assignment_structure.md)). Relevant sind für die Bewertung das Abgabedatum (`due_date`) und die Liste der Aufgaben (`tasks`). |
 | 2.      | Vorbereiten des Repositories                                         | Basierend auf dem Abgabedatum (`due_date`) wird das Repository passend ausgecheckt.                                                                                                                                                                                                       |
 | 3.      | Aufgaben-yml laden (wiederholend bis 6. für jede Aufgabe in `tasks`) | Einlesen der Aufgaben-yml für die jeweilige Aufgabe. Relevant sind die Tests (`tests`) und die Liste an nicht zu überschreibenden Dateien (`no_override`).                                                                                                                                |
@@ -46,10 +46,12 @@ tests:                # Metriken, die bei dieser Aufgabe ausgeführt wurden
 Das Deploy-to-Grading, welches Studierende über die GitHub Action ausführen, soll von Lehrenden auch lokal in einem Docker Container zur Sammlung der Ergebnisse ausgeführt werden können. Zur Zusammenführung von ILIAS- und GitHub-Daten geben Studierende im ILIAS die URL zu ihrem Pull Request ab.
 
 Aus dem ILIAS kann von Lehrenden folgende Liste heruntergeladen werden:
+
 ```
 student,pr
 ILIAS_NAME,PR_URL
 ```
+
 *Hinweis 1: Da ich gerade nicht weiß, wie bei ILIAS die Ergebnisse bei Textabgaben aussehen, habe ich jetzt vereinfacht eine csv-Datei angenommen.*
 
 *Hinweis 2: In der csv-Datei fehlt aktuell noch die Zuordnung ILIAS-Name <-> GitHub-Username. Da müsste geprüft werden, was ILIAS für Möglichkeiten hierfür bietet. Alternativ wäre eine "Abgabe" des GitHub-Usernames zu Beginn des Semesters möglich.*
@@ -59,7 +61,7 @@ ILIAS_NAME,PR_URL
 Im Folgenden wird der D2G-Ablauf für Lehrende beschrieben:
 
 | Schritt | Bezeichnung                                                     | Beschreibung                                                                                                                                                                                                                                                                                                                                                                          |
-| ------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1.      | *csv*-Datei einlesen                                            | Einlesen der Daten aus dem ILIAS.                                                                                                                                                                                                                                                                                                                                                     |
 | 2.      | Auswerten der Ergebnisse (für jeden Eintrag in der *csv-Datei*) | Für jede(n) Studierenden werden die Ergebnisse der abgegebenen Aufgabe aus dem jeweiligen Repository geladen und überprüft. Alternativ ist es auch möglich, den Deploy-to-Grading-Prozess für jede Abgabe erneut auszuführen. Dies ist zum Beispiel notwendig, wenn das herunterzuladende Artefakt nicht mehr verfügbar ist oder Änderungen an der GitHub Action festgestellt wurden. |
 | 3.      | Plagiatsprüfung                                                 | Da an dieser Stelle alle Abgaben der Studierenden an einem Ort gesammelt sind, kann eine Plagiatsprüfung durchgeführt werden.                                                                                                                                                                                                                                                         |

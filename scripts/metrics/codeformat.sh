@@ -20,5 +20,3 @@ fi
 
 ./gradlew spotlessJavaCheck
 echo "result: $?" > "$DIR/codeformat.yml"
-
-

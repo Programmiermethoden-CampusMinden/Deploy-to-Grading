@@ -20,4 +20,3 @@ fi
 
 ./gradlew compileJava
 echo "result: $?" > "$DIR/compile.yml"
-

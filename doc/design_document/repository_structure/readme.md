@@ -11,7 +11,7 @@ title: Aufbau der D2G-Repositorys
 *Notiz: Für Informationen zu git filter-repo siehe [hier](https://www.mankier.com/1/git-filter-repo).*
 
 | Repository       | Erläuterung                                                                                                                                                                                         |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | D2A              | Enthält die GitHub Action, die über den Workflow ab dem Template-Repository in jedes darunter liegende Repository eingebunden wird.                                                                 |
 | Template         | Enthält die Vorlagen für alle Aufgaben.                                                                                                                                                             |
 | Tasks            | (Optional) Enthält die Vorlagen für ausschließlich die Aufgaben, die die Studierenden bearbeiten sollen.                                                                                            |
@@ -24,7 +24,7 @@ title: Aufbau der D2G-Repositorys
 **Gegenüberstellung HomeworkSolution vs SampleSolution**
 
 | HomeworkSolution                                                                                                                                                  | SampleSolution                                                                                                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | - Neue Aufgaben können in ein und demselben Repository erstellt werden (Keine Arbeit in zwei Repositories gleichzeitig oder Rüberkopieren von Dateien notwendig). | - Entspricht dem Workflow der Studierenden.                                                                                                 |
 | - Kein doppelter Vorlagen-Code in zwei unterschiedlichen Repositories.                                                                                            | - Erlaubt das Testen durch D2A, ohne eine Unterscheidung zu StudiSolution machen zu müssen.                                                 |
 | - Bereits Pull-Request mit dieser Lösung vorhanden.                                                                                                               | - Ermöglicht das Arbeiten in den Vorgaben (größerer möglicher Aufgabenpool).                                                                |

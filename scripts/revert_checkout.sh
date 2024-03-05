@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Reverts back the changes made by the checkout_due_date.sh script.
-# Reads the previously checked out branch saved in 
+# Reads the previously checked out branch saved in
 # ./.d2g_previvous_checkout.txt and checks it out again.
 #
 # usage: revert_checkout.sh

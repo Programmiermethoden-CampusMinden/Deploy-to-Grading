@@ -11,7 +11,6 @@ In diesem Designdokument wird ein Konzept vorgestellt, durch das wir den bisheri
 3. [Repositorystrukturen](repository_structure/README.md)
 4. [Ergebnispräsentation](result_presentation.md)
 
-
 ### Weitere outdated Issues
 
 - [Deploy-to-Grading konzipieren #10](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/issues/10)
