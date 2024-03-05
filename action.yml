@@ -3,10 +3,10 @@ description: 'This action will setup and execute the Deploy-to-Grading pipeline.
 runs:
   using: 'composite'
   steps:
-    - name: Set up JDK 17
+    - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
-        java-version: '17'
+        java-version: '21'
         distribution: 'temurin'
     - name: Run Deploy-to-Grading
       run: python3 ${{ github.action_path }}/scripts/deploy_to_grading.py
