@@ -2,7 +2,7 @@
 title: Aufbau der D2G-Repositorys
 ---
 
-*Anmerkung: Basierend auf [Kommentar von @AMatutat](https://github.com/Programmiermethoden/Dungeon/issues/434#issuecomment-1532679532).*
+*Anmerkung: Basierend auf [Kommentar von @AMatutat](https://github.com/Programmiermethoden-CampusMinden/Dungeon/issues/434#issuecomment-1532679532).*
 
 ![Repository Struktur](https://user-images.githubusercontent.com/32961997/236833681-507dac5b-7414-4c8c-a7f3-a4403e7c594e.png)
 

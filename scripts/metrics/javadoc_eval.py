@@ -3,8 +3,8 @@
 # Evaluates the javadoc test results. It is required to execute javadoc.sh
 # prior to the execution of this script. This script parses the test
 # results saved in "build/results/javadoc" and converts them into the
-# "results.yml" format defined in the 
-# [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
+# "results.yml" format defined in the
+# [documentation](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # The output is printed to the console. Make sure to execute the script
 # inside a task folder and that the task configuration defined in a
 # task.yml file was loaded correctly using the load_yaml scripts.
@@ -26,7 +26,7 @@
 #               value.
 #
 # Error handling:
-# - Exits with an error code when either of the 
+# - Exits with an error code when either of the
 #   %TASKNAME%_METRICS_JAVADOC_MAX_POINTS,
 #   %TASKNAME%_METRICS_JAVADOC_GROUP_ERRORS
 #   or %TASKNAME%_METRICS_JAVADOC_DEDUCTION_PER_ERROR environment variables

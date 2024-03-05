@@ -49,7 +49,7 @@ Durch die folgenden Punkte können wir uns von anderen AutoGradern abgrenzen:
 
 ## Inhaltsverzeichnis
 
-1. [Konferenzliste](https://github.com/Programmiermethoden/Dungeon/blob/master/doc/related_work/conferences.md)
+1. [Konferenzliste](https://github.com/Programmiermethoden-CampusMinden/Dungeon/blob/master/doc/related_work/conferences.md)
 2. [Automatische Bewertungssysteme](autograder/readme.md)
 3. [Nicht kategorisierte Paper](paper/readme.md)
 4. [Bücher](book/readme.md)

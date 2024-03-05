@@ -3,8 +3,8 @@
 # Evaluates the compile results. It is required to execute compile.sh
 # prior to the execution of this script. This script parses the results
 # saved in "build/results/compile.yml" and converts them into the "results.yml"
-# format defined in the 
-# [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
+# format defined in the
+# [documentation](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/blob/master/doc/design_document/d2g_procedure.md#format-der-result.yml).
 # The output is printed to the console. Make sure to execute the script
 # inside a task folder and that the task configuration defined in a
 # task.yml file was loaded correctly using the load_yaml scripts.
@@ -16,7 +16,7 @@
 #               value.
 #
 # Error handling:
-# - Exits with an error code when the 
+# - Exits with an error code when the
 #   %TASKNAME%_METRICS_COMPILE_POINTS environment variable is not
 #   set or the results file was not found or could not be parsed.
 #
@@ -49,7 +49,7 @@ def _main():
         POINTS_ENV_KEY, taskname, USAGE))
     results = metric_utils.generate_final_results_all_or_nothing(
         data["result"] == 0, points, "Compilation failed.")
-    metric_utils.print_results(results)    
+    metric_utils.print_results(results)
 
 if __name__ == "__main__":
     _main()

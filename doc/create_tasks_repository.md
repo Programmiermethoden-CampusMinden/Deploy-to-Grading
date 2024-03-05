@@ -12,7 +12,7 @@ Um ein Aufgabenrepository mit Aufgaben zu befüllen und zu konfigurieren, müsse
 
 ### 1. Aufgaben hinzufügen
 
-Als Basis für eine neue Java-Aufgabe kann das `empty`-Beispiel aus dem [Demo-Repository](https://github.com/Programmiermethoden/D2G-Aufgaben-Demo) übernommen werden. Das Beispiel enthält alle benötigten Dateien und muss nur noch auf eine konkrete Aufgabenstellung angepasst werden. Dazu müssen die folgenden Änderungen vorgenommen werden:
+Als Basis für eine neue Java-Aufgabe kann das `empty`-Beispiel aus dem [Demo-Repository](https://github.com/Programmiermethoden-CampusMinden/D2G-Aufgaben-Demo) übernommen werden. Das Beispiel enthält alle benötigten Dateien und muss nur noch auf eine konkrete Aufgabenstellung angepasst werden. Dazu müssen die folgenden Änderungen vorgenommen werden:
 
 1. Hinzufügen von Vorgabe-Code im `src`-Ordner. Vorgabe-Dateien müssen dabei in `src/main/java` abgelegt werden, wohingegen Unittests im Ordner `src/test/java` hinzugefügt werden müssen.
 2. Aktualisieren der `task.yml`, in der der Name der Aufgabenstellung und eine kurze Beschreibung der Aufgabe hinzugefügt werden müssen. Unter dem Punkte `no_override` können Dateien angegeben werden, die bei der Prüfung auf unerlaubte Änderungen ignoriert werden sollen. Dies ist insbesondere dann wichtig, wenn Studierende Änderungen in Vorgabedateien machen sollen. Für die Konfiguration der einzelnen Metriken sei auf dessen [Dokumentation](metrics/readme.md) verwiesen.
@@ -25,7 +25,7 @@ Nachdem die einzelnen Aufgaben hinzugefügt wurden, müssen diese über eine Kon
 ```yml
 name: Demo Aufgabenblatt
 description: Dies ist eine Beispielkonfiguration für ein Aufgabenblatt.
-template_repository: https://github.com/Programmiermethoden/D2G-Aufgaben-Demo
+template_repository: https://github.com/Programmiermethoden-CampusMinden/D2G-Aufgaben-Demo
 due_date: 2025-01-01T00:00
 tasks:
 - empty
@@ -48,13 +48,13 @@ name: Deploy-to-Grading
 on:
   pull_request:
   workflow_dispatch:
-  
+
 jobs:
   deploy-to-grading:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: programmiermethoden/deploy-to-grading@master
+      - uses: Programmiermethoden-CampusMinden/deploy-to-grading@master
 ```
 
 Damit wird die Deploy-to-Grading-Pipeline immer bei neuen Änderungen eines Pull Requests ausgeführt, sie kann aber auch manuell gestartet werden.

@@ -5,7 +5,7 @@
 # not allowed to change. Files that are present in the current repository
 # as well as the template repository and that should not be overridden
 # need to be listed in the configuration file of the current task. Check
-# the [documentation](https://github.com/Programmiermethoden/Deploy-to-Grading/blob/master/doc/design_document/repository_structure/task_and_assignment_structure.md#format-aufgabendefinition-taskyml)
+# the [documentation](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/blob/master/doc/design_document/repository_structure/task_and_assignment_structure.md#format-aufgabendefinition-taskyml)
 # on how to define files that should not be overwritten. Furthermore, it
 # checks for differences in the config files. The execution fails, if it
 # detects any changes.
@@ -92,7 +92,7 @@ def _clone_template_repository(url):
     os.chdir(DIR_PREFIX)
     return_code = subprocess.call(["git", "clone", "--depth", "1", url])
     os.chdir(current_dir)
-    
+
     if return_code != 0:
         print("Failed to clone template repository.")
         _create_arg_parser().print_help()

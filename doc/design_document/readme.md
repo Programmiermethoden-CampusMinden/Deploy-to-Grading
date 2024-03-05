@@ -14,8 +14,8 @@ In diesem Designdokument wird ein Konzept vorgestellt, durch das wir den bisheri
 
 ### Weitere outdated Issues
 
-- [Deploy-to-Grading konzipieren #10](https://github.com/Programmiermethoden/Deploy-to-Grading/issues/10)
-- [Deploy-to-Grading How to #11](https://github.com/Programmiermethoden/Deploy-to-Grading/issues/11)
-- [Build Script für alle Task #15](https://github.com/Programmiermethoden/Deploy-to-Grading/issues/15)
+- [Deploy-to-Grading konzipieren #10](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/issues/10)
+- [Deploy-to-Grading How to #11](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/issues/11)
+- [Build Script für alle Task #15](https://github.com/Programmiermethoden-CampusMinden/Deploy-to-Grading/issues/15)
 
 *Anmerkung: Diese Issues sind hier verlinkt, da sie noch Relevanz haben könnten.*
