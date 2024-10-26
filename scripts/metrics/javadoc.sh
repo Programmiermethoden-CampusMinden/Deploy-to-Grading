@@ -7,7 +7,7 @@
 # results to "build/results/javadoc". A minimal example is:
 #
 # checkstyle {
-#     toolVersion = "10.2"
+#     toolVersion = "10.19.0"
 #     configFile = file(".config/checkstyle/javadoc.xml")
 #     reportsDir = file("build/results/javadoc")
 # }
